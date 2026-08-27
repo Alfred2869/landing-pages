@@ -339,6 +339,12 @@ function safeFbq() {
   .site-footer .tagline{ width:100%; text-align:center; margin-top:1rem; font-style:italic; color:var(--on-accent); opacity:.85; }
   .footer-links{ display:flex; flex-direction:column; gap:.3rem; }
 
+  /* ==== Brand illustrations - flat SVG scenes in the page palette ==== */
+  .illus{ display:block; width:100%; height:auto; border-radius:12px; }
+  .services-illus{ margin:2rem auto 0; max-width:760px; }
+  .timeline-grid{ display:grid; gap:2rem; align-items:start; }
+  .timeline-grid .illus{ max-width:560px; }
+
   /* ==== Responsive: two-column layouts from tablet up ==== */
   @media (min-width:700px){
     .hero .wrap{ grid-template-columns:3fr 2fr; }
@@ -347,6 +353,8 @@ function safeFbq() {
   }
   @media (min-width:900px){
     .services-grid{ grid-template-columns:repeat(3,1fr); }
+    .timeline-grid{ grid-template-columns:minmax(0,600px) 1fr; }
+    .timeline-grid .illus{ position:sticky; top:5.5rem; }
   }
 
   /* ==== Reduced motion: kill the marquee animation, allow manual scroll ==== */
@@ -692,6 +700,11 @@ function safeFbq() {
         </article>
       </div>
 
+      <!-- Brand illustration: therapy where the child already is - the school setting. -->
+      <img class="illus services-illus" src="assets/illustration-school.svg"
+           alt="Illustration of a therapist working alongside a child at a desk in a classroom"
+           width="900" height="600" loading="lazy">
+
       <div class="modules modules--logistics">
         <article class="module">
           <h3>Where we visit</h3>
@@ -715,6 +728,7 @@ function safeFbq() {
       <span class="kicker">How it actually goes</span>
       <h2 id="timeline-heading">From free consult to regular sessions</h2>
       <p class="sub">Five steps, starting with half an hour that costs nothing.</p>
+      <div class="timeline-grid">
       <ol class="timeline">
         <li>
           <span class="beat-label">Step one</span>
@@ -748,6 +762,11 @@ function safeFbq() {
           <p>You hear how things are going and what happens next, in plain language.</p>
         </li>
       </ol>
+      <!-- Brand illustration: the free consult - floor play at home. -->
+      <img class="illus" src="assets/illustration-home.svg"
+           alt="Illustration of a therapist and a young child playing with blocks together on the floor at home"
+           width="900" height="600" loading="lazy">
+      </div>
     </div>
   </section>
 
