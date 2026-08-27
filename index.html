@@ -533,14 +533,14 @@ function getAttribution() {
 
         <!-- Outcome: QUALIFIED -->
         <div class="quiz-outcome" data-outcome="qualified" hidden tabindex="-1">
-          <h3>Done - a therapist will call you</h3>
-          <p>A therapist will call you to arrange your free half-hour consult. [you to confirm: within one business day?]</p>
+          <h3>Done - a team member will call you</h3>
+          <p>A team member will call you within one business day to book in your consult.</p>
         </div>
 
         <!-- Outcome: FUNDING UNSURE -->
         <div class="quiz-outcome" data-outcome="funding_unsure" hidden tabindex="-1">
-          <h3>Done - a therapist will call you</h3>
-          <p>A therapist will call you to arrange your free half-hour consult. [you to confirm: within one business day?] Bring your NDIS plan along - the therapist will tell you honestly what it covers.</p>
+          <h3>Done - a team member will call you</h3>
+          <p>A team member will call you within one business day to book in your consult. Bring your NDIS plan along - the therapist will tell you honestly what it covers.</p>
         </div>
 
         <!-- Outcome: NOT YET -->
@@ -988,7 +988,7 @@ function getAttribution() {
       formFraming.textContent = 'Bring your NDIS plan and the therapist will tell you honestly what it covers.';
     } else {
       formHeading.textContent = 'Book your free consult';
-      formFraming.textContent = "Tell us where to reach you and a therapist will call to arrange your free half-hour consult.";
+      formFraming.textContent = "Tell us where to reach you and a team member will call to book in your consult.";
     }
 
     var suburbInput = document.getElementById('qf-suburb');
