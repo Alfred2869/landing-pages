@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speech and OT that comes to your child | Alpha Abilities Melbourne</title>
+<meta name="description" content="NDIS speech pathology and occupational therapy for kids, delivered at home, childcare or school across Melbourne. Free half-hour consult, no waitlist.">
+
+<!-- Google Fonts: Poppins 600/700 for display use only (headings, wordmark, buttons). Body stays on the system sans stack. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+<!--
+  ============================================================================
+  PAGE SCRIPT (config + Meta Pixel) - loaded here so PageView fires as early
+  as possible. The two consts at the very top are the only things a builder
+  needs to fill in before launch; the qualifier-quiz script that reuses them
+  sits at the end of <body>, after the markup it drives.
+  ============================================================================
+-->
+<script>
+/* ---- CONFIG - fill these in before launch ---- */
+const FORM_ENDPOINT = ''; // [you to provide - Formspree/Web3Forms endpoint or Cloudflare Pages Function]
+const META_PIXEL_ID = ''; // [you to provide - Meta Events Manager -> Data sources]
+
+/* ---- Meta Pixel base snippet ----
+   Only initialises when META_PIXEL_ID is non-empty. Until an ID is supplied
+   this block is a no-op and every fbq() call on the page is guarded with a
+   typeof check (see safeFbq below), so the page never throws with the ID
+   blank. Fires PageView on load, per the standard base snippet. */
+(function(){
+  if (!META_PIXEL_ID) { return; }
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', META_PIXEL_ID);
+  fbq('track', 'PageView');
+})();
+
+/* Guarded fbq helper - every fbq call anywhere on the page goes through
+   here so a missing pixel (blank META_PIXEL_ID, or fbq blocked by the
+   visitor's browser) never throws. */
+function safeFbq() {
+  if (typeof fbq === 'function') {
+    fbq.apply(null, arguments);
+  }
+}
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=[you to provide - Meta Pixel ID]&ev=PageView&noscript=1"
+/></noscript>
+
+<style>
+  /* ==== THEME - brand palette, drawn from the supplied logo/mascot ==== */
+  :root{
+    --ink:        #23201C;  /* primary text, on cream/white surfaces */
+    --muted:      #6B6459;  /* secondary text - quiet neutral, warm to match the cream */
+    --line:       #E2DBCC;  /* borders, dividers - quiet neutral */
+    --bg:         #FAF7F2;  /* page background - warm cream */
+    --bg-alt:     #F5F1E8;  /* cream panel */
+    --surface:    #FFFFFF;  /* cards, quiz surface */
+    --accent:     #264B5D;  /* brand deep teal - CTAs, links, ticks, timeline dots */
+    --on-accent:  #F4F4F0;  /* text/icons placed on teal surfaces (header, footer, teal buttons) */
+    --accent-tint:#E7EEF1;  /* soft teal tint - selected quiz options, subtle highlights */
+  }
+  /* All text/background pairs below checked against WCAG AA:
+     ink/bg 15.2:1 - muted/bg 5.5:1 - accent/bg 8.8:1 - on-accent/accent 8.5:1 - ink/accent-tint 13.8:1 */
+
+  /* ==== Reset / base ==== */
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.55;
+    -webkit-text-size-adjust:100%;
+    overflow-x:hidden;
+  }
+  img,svg{ max-width:100%; display:block; }
+  h1,h2,h3{ line-height:1.15; font-weight:700; font-family:"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  h1{ font-size:clamp(1.8rem, 5vw, 3rem); }
+  h2{ font-size:clamp(1.4rem, 3.5vw, 2rem); margin-bottom:.5rem; }
+  h3{ font-size:1.1rem; }
+  p{ max-width:65ch; }
+  a{ color:var(--accent); }
+
+  /* Visible focus everywhere. On teal surfaces (header, footer) a teal
+     outline would disappear against the teal background, so those areas
+     swap to the light on-accent colour instead - see the header/footer
+     rules below. */
+  :focus-visible{ outline:3px solid var(--accent); outline-offset:2px; }
+
+  /* ==== Layout helpers ==== */
+  .wrap{ max-width:1100px; margin:0 auto; padding:0 1.25rem; }
+  section{ padding:3.5rem 0; }
+  .section-alt{ background:var(--bg-alt); }
+  .kicker{
+    display:block; font-size:.8rem; font-weight:600; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--muted); margin-bottom:.5rem;
+    font-family:"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .sub{ color:var(--muted); margin-bottom:1.5rem; }
+
+  /* ==== Buttons - every CTA on the page uses .btn ==== */
+  .btn{
+    display:inline-block; padding:.9rem 1.6rem; font-size:1rem; font-weight:600;
+    color:#fff; background:var(--accent); border:2px solid var(--accent);
+    border-radius:6px; text-decoration:none; cursor:pointer; text-align:center;
+    font-family:"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .btn:hover{ opacity:.85; }
+  .btn-ghost{ color:var(--ink); background:transparent; border-color:var(--ink); }
+  /* Inverse button for teal surfaces (header/footer) - a teal button on a
+     teal background would be invisible, so this swaps to a light button
+     with teal text instead. Same padding/weight/shape as .btn. */
+  .btn-on-teal{ color:var(--accent); background:var(--on-accent); border-color:var(--on-accent); }
+  .btn-on-teal:hover{ opacity:.9; }
+
+  /* ==== Image placeholders - labelled slots, no stock, no AI children ==== */
+  .ph{
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    background:var(--bg-alt); border:2px dashed var(--line); border-radius:8px;
+    color:var(--muted); font-size:.85rem; padding:1rem; min-height:200px;
+  }
+  .ph--face{ min-height:160px; aspect-ratio:1/1; border-radius:50%; width:140px; margin:0 auto 1rem; }
+
+  /* ==== 1. Sticky header ====
+     Brand teal bar - the logo artwork is white-on-teal and only works on
+     this background, so the header (and footer, to match) carry the brand
+     colour rather than the page cream. */
+  .site-header{
+    position:sticky; top:0; z-index:50; background:var(--accent);
+  }
+  .site-header .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; row-gap:.5rem;
+    gap:.75rem; padding-top:.65rem; padding-bottom:.65rem;
+  }
+  /* Logo: white wolf-head mark over a stacked "ALPHA / ABILITIES" wordmark,
+     white artwork on brand teal. Explicit width/height (matched to the
+     asset's own aspect ratio once supplied - adjust if it differs) avoid
+     layout shift while assets/logo.png is missing or loading. The <img>'s
+     own alt text is the fallback if the file 404s - no separate text
+     wordmark needed alongside it. */
+  .logo-img{ display:block; height:44px; width:110px; }
+  .header-actions{ display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; justify-content:flex-end; }
+  .header-phone{ font-size:.85rem; font-weight:600; color:var(--on-accent); text-decoration:underline; white-space:nowrap; }
+  .site-header .btn{ padding:.55rem 1rem; font-size:.8rem; white-space:nowrap; }
+  /* Focus rings on the teal header/footer swap to the light colour so they
+     stay visible against the teal background. */
+  .site-header :focus-visible,
+  .site-footer :focus-visible{ outline-color:var(--on-accent); }
+
+  /* Small phones: header goes two rows (wordmark, then phone + CTA) rather
+     than clipping or forcing horizontal scroll. Hero padding and list
+     spacing tighten too, so the H1 and CTA both sit above the fold at
+     375px on a real device (not just a tall emulator viewport). */
+  @media (max-width:400px){
+    .site-header .wrap{ justify-content:flex-start; padding-top:.5rem; padding-bottom:.5rem; row-gap:.3rem; }
+    .header-actions{ width:100%; justify-content:space-between; }
+    .hero{ padding-top:1rem; padding-bottom:1.5rem; }
+    .hero .sub{ margin-bottom:.75rem; }
+    .hero ul{ margin:.75rem 0; }
+    .hero li{ margin-bottom:.3rem; }
+  }
+
+  /* ==== 2. Hero ==== */
+  .hero .wrap{ display:grid; gap:2rem; grid-template-columns:1fr; align-items:center; }
+  .hero ul{ list-style:none; margin:1.25rem 0; }
+  .hero li{ padding-left:1.6rem; position:relative; margin-bottom:.55rem; }
+  .hero li::before{
+    content:""; position:absolute; left:0; top:.42em; width:.9em; height:.9em;
+    border:2px solid var(--accent); border-radius:50%;
+  }
+  .reassure-line{ font-size:.9rem; color:var(--muted); margin-top:.75rem; }
+  /* Hero visual slot - min-height keeps it looking intentional whether the
+     mascot image is missing, still loading, or present. */
+  .hero-visual{
+    display:flex; align-items:center; justify-content:center;
+    background:var(--bg-alt); border-radius:12px; padding:1.5rem;
+    min-height:320px;
+  }
+  .mascot-img{ display:block; max-height:520px; width:auto; height:auto; max-width:100%; margin:0 auto; }
+
+  /* ==== 3. Qualifier quiz ==== */
+  .quiz{
+    background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    padding:1.5rem; max-width:640px; margin:0 auto;
+  }
+  .quiz-progress{ font-size:.85rem; color:var(--muted); margin-bottom:.35rem; }
+  .quiz-bar{ height:6px; background:var(--bg-alt); border-radius:3px; margin-bottom:1.25rem; overflow:hidden; }
+  .quiz-bar-fill{ height:100%; width:0; background:var(--accent); transition:width .25s ease; }
+  .quiz-step[hidden]{ display:none; }
+  .quiz-step legend, .quiz-step h3{ margin-bottom:1rem; font-size:1.1rem; }
+  .quiz-option{
+    display:block; width:100%; text-align:left; padding:.85rem 1rem; margin-bottom:.6rem;
+    background:var(--surface); border:1px solid var(--line); border-radius:8px;
+    font:inherit; color:var(--ink); cursor:pointer;
+  }
+  .quiz-option:hover{ border-color:var(--accent); }
+  .quiz-option[aria-pressed="true"]{ border-color:var(--accent); background:var(--accent-tint); font-weight:600; }
+  .quiz-back{
+    background:none; border:none; font:inherit; color:var(--muted);
+    cursor:pointer; text-decoration:underline; padding:.25rem; margin-top:.5rem;
+  }
+  .quiz-form label{ display:block; font-weight:600; margin-bottom:.4rem; }
+  .quiz-form input,
+  .quiz-form select{
+    width:100%; padding:.85rem 1rem; font:inherit; border:1px solid var(--line);
+    border-radius:8px; margin-bottom:1rem; color:var(--ink); background:var(--surface);
+  }
+  .quiz-form fieldset{ border:none; margin-bottom:1rem; }
+  .quiz-form fieldset legend{ font-weight:600; margin-bottom:.5rem; padding:0; }
+  .quiz-form .radio-row{ display:flex; flex-wrap:wrap; gap:.75rem; }
+  .quiz-form .radio-row label{ display:flex; align-items:center; gap:.4rem; font-weight:400; }
+  .quiz-form .radio-row input{ width:auto; margin:0; }
+  .reassure{ font-size:.8rem; color:var(--muted); margin-bottom:1rem; }
+  .quiz-outcome[hidden]{ display:none; }
+  .quiz-outcome{ text-align:left; }
+  .quiz-outcome h3{ margin-bottom:.6rem; }
+  .quiz-outcome p{ margin-bottom:1rem; }
+
+  /* ==== 4. Comparison table ==== */
+  .table-scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .compare{ border-collapse:collapse; width:100%; min-width:640px; font-size:.95rem; }
+  .compare th,.compare td{
+    border:1px solid var(--line); padding:.85rem 1rem; text-align:left; vertical-align:top;
+  }
+  .compare thead th{ background:var(--bg-alt); }
+  .compare .us{ background:var(--bg-alt); font-weight:600; border-left:3px solid var(--accent); border-right:3px solid var(--accent); }
+  .compare thead .us{ border-top:3px solid var(--accent); }
+  .compare tbody tr:last-child .us{ border-bottom:3px solid var(--accent); }
+  .compare .concede td, .compare .concede th{ font-style:italic; }
+
+  /* ==== 5. People cards ==== */
+  .people{ display:grid; gap:1.5rem; grid-template-columns:1fr; }
+  .person{ border:1px solid var(--line); border-radius:10px; padding:1.5rem; text-align:center; background:var(--surface); }
+  .person .role{ color:var(--muted); font-size:.9rem; margin-bottom:.75rem; }
+  .person .bio{ text-align:left; font-size:.95rem; margin:0 auto; }
+  .credentials-strip{
+    margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; align-items:baseline;
+    font-size:.85rem; color:var(--muted);
+  }
+  .credentials-strip strong{ color:var(--ink); }
+
+  /* ==== 6. Value-bar marquee ==== */
+  .marquee{ overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--surface); }
+  .marquee-track{ display:flex; width:max-content; animation:marquee 30s linear infinite; }
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track{ animation-play-state:paused; }
+  .marquee-track ul{
+    display:flex; list-style:none; gap:0; align-items:center;
+  }
+  .marquee-track li{
+    white-space:nowrap; padding:1rem 1.5rem; font-weight:600; font-size:.95rem;
+    font-family:"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .marquee-track li::after{ content:"•"; margin-left:3rem; color:var(--muted); }
+  @keyframes marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+  /* ==== 7. Modules ==== */
+  .modules{ display:grid; gap:1.5rem; grid-template-columns:1fr; counter-reset:module; }
+  .module{ border:1px solid var(--line); border-radius:10px; padding:1.5rem; background:var(--surface); }
+  .module::before{
+    counter-increment:module; content:"0" counter(module);
+    display:block; font-size:1.6rem; font-weight:700; color:var(--muted); margin-bottom:.5rem;
+    font-family:"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .module p{ color:var(--muted); font-size:.95rem; margin-top:.5rem; }
+  .module .suburbs{ font-size:.9rem; color:var(--ink); margin-top:.75rem; }
+  /* Logistics modules (where we visit / how the fortnight works) sit below
+     the five-service grid with a bit of extra breathing room. */
+  .modules--logistics{ margin-top:1.5rem; }
+
+  /* ==== 8. Timeline ==== */
+  .timeline{ list-style:none; position:relative; padding-left:1.75rem; max-width:640px; }
+  .timeline::before{
+    content:""; position:absolute; left:.5rem; top:.5rem; bottom:.5rem;
+    width:2px; background:var(--line);
+  }
+  .timeline li{ position:relative; margin-bottom:1.75rem; }
+  .timeline li::before{
+    content:""; position:absolute; left:-1.75rem; top:.35rem; width:1rem; height:1rem;
+    background:var(--bg-alt); border:3px solid var(--accent); border-radius:50%;
+  }
+  .timeline .beat-label{ display:block; font-size:.8rem; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+  .timeline h3{ margin:.15rem 0 .3rem; }
+  .timeline p{ color:var(--muted); font-size:.95rem; }
+  .visit-minutes{ list-style:none; margin-top:.75rem; padding-left:0; }
+  .visit-minutes li{ margin-bottom:0; padding-left:0; }
+  .visit-minutes li::before{ display:none; content:none; }
+  .visit-minutes{ position:static; }
+  .visit-minutes li{ font-size:.9rem; color:var(--muted); margin-bottom:.4rem; }
+  .visit-minutes li strong{ color:var(--ink); }
+
+  /* ==== 9. After / honesty block ==== */
+  .honesty-block{ background:var(--bg-alt); border-left:3px solid var(--accent); border-radius:8px; padding:1.5rem; max-width:70ch; }
+
+  /* ==== 10. Proof ==== */
+  .proof-rating{
+    background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    padding:2rem; text-align:center; max-width:480px; margin:0 auto 2rem;
+  }
+  .proof-rating .stars-text{ font-size:clamp(1.6rem,4vw,2.2rem); font-weight:700; display:block; font-family:"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .proof-rating .stars-sub{ display:block; margin:.35rem 0 1rem; color:var(--muted); }
+
+  /* ==== 11. FAQ ==== */
+  .faq details{ border-bottom:1px solid var(--line); }
+  .faq details:first-of-type{ border-top:1px solid var(--line); }
+  .faq summary{
+    cursor:pointer; padding:1.1rem .25rem; font-weight:600; list-style:none;
+    display:flex; justify-content:space-between; align-items:center; gap:1rem;
+    font-family:"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .faq summary::-webkit-details-marker{ display:none; }
+  .faq summary::after{ content:"+"; font-size:1.3rem; color:var(--muted); flex-shrink:0; }
+  .faq details[open] summary::after{ content:"\2212"; }
+  .faq details p{ padding:0 .25rem 1.25rem; color:var(--muted); }
+
+  /* ==== 12. Final CTA ==== */
+  .final-cta{ text-align:center; }
+  .final-cta p{ margin:.75rem auto 1.5rem; }
+  .honesty{ font-size:.85rem; color:var(--muted); margin-top:1rem; }
+
+  /* ==== 13. Footer - same brand teal treatment as the header ==== */
+  .site-footer{ background:var(--accent); padding:2rem 0; font-size:.85rem; color:var(--on-accent); }
+  .site-footer .wrap{ display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; justify-content:space-between; align-items:center; }
+  .site-footer .logo-img{ height:32px; width:80px; }
+  .site-footer a{ color:var(--on-accent); text-decoration:underline; }
+  .site-footer .tagline{ width:100%; text-align:center; margin-top:1rem; font-style:italic; color:var(--on-accent); opacity:.85; }
+  .footer-links{ display:flex; flex-direction:column; gap:.3rem; }
+
+  /* ==== Responsive: two-column layouts from tablet up ==== */
+  @media (min-width:700px){
+    .hero .wrap{ grid-template-columns:3fr 2fr; }
+    .people{ grid-template-columns:1fr 1fr; }
+    .modules{ grid-template-columns:1fr 1fr; }
+  }
+  @media (min-width:900px){
+    .services-grid{ grid-template-columns:repeat(3,1fr); }
+  }
+
+  /* ==== Reduced motion: kill the marquee animation, allow manual scroll ==== */
+  @media (prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto; }
+    .marquee{ overflow-x:auto; }
+    .marquee-track{ animation:none; }
+    .quiz-bar-fill{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<!--
+  SECTION 1: STICKY HEADER
+  Logo (assets/logo.png - white wolf-head mark over a stacked wordmark,
+  white artwork so it only works on the brand teal background used here),
+  a tappable phone number, and the one CTA - identical everywhere - to
+  #quiz. The logo's alt text is the fallback if the file is missing.
+-->
+<header class="site-header">
+  <div class="wrap">
+    <img class="logo-img" src="assets/logo.png" alt="Alpha Abilities" width="110" height="44">
+    <div class="header-actions">
+      <a class="header-phone" href="tel:1300522139">1300 522 139</a>
+      <a class="btn btn-on-teal" href="#quiz">Book your free consult</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!--
+    SECTION 2: HERO
+    Job: keep the ad's promise in the first second. H1, subhead and CTA must
+    sit above the fold at 375px.
+  -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="wrap">
+      <div>
+        <h1 id="hero-heading">Speech and OT that comes to your child.</h1>
+        <p class="sub">At home, childcare or school, across Melbourne - starting with a free half-hour consult at your place. No waitlist to join, no clinic runs. [you to confirm: typical days from enquiry to first consult - if confirmable, add "usually within X days, not months"]</p>
+        <ul>
+          <li>Therapy in your child's real environment - home, childcare or school</li>
+          <li>A qualified, registered therapist (SPA, AHPRA)</li>
+          <li>One fixed fortnightly amount, in writing first</li>
+          <li>Hands-on therapy, not reports</li>
+        </ul>
+        <a class="btn" href="#quiz">Book your free consult</a>
+        <p class="reassure-line">Half an hour. No charge. No obligation.</p>
+      </div>
+      <!--
+        Hero visual: the supplied mascot illustration (assets/mascot.png - a
+        friendly cartoon wolf therapist holding an Alpha Abilities services
+        clipboard, portrait). A real therapist photo - per the original
+        brief's "therapist with a child at a kitchen table, child from
+        behind" - can replace this mascot, or sit alongside it, once
+        supplied; that slot is still open. min-height on the container keeps
+        the layout intentional if the image is missing or still loading.
+      -->
+      <div class="hero-visual">
+        <img class="mascot-img" src="assets/mascot.png" alt="Alpha Abilities mascot - a friendly wolf therapist holding a services clipboard" width="364" height="520" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!--
+    SECTION 3: QUALIFIER QUIZ (#quiz) - the primary conversion mechanic.
+    Five questions, one per screen, always run in full - routing happens only
+    after Q5. Explicit rules (not a points/threshold score):
+      - outcome "not_yet"       if Q1="Not yet" OR Q2="No" OR Q3="19 or older" OR Q4="Outside Melbourne"
+      - else outcome "funding_unsure" if Q2="Not sure"
+      - else outcome "qualified"
+    The "qualified" and "funding_unsure" branches share the same contact form
+    (name, mobile, email, suburb pre-filled from Q4, preferred contact time)
+    but different framing copy. "not_yet" shows no form and fires no Lead.
+  -->
+  <section id="quiz" class="section-alt" aria-labelledby="quiz-heading">
+    <div class="wrap">
+      <span class="kicker">Is this right for your family?</span>
+      <h2 id="quiz-heading">Five quick questions, then we will tell you honestly</h2>
+      <p class="sub">Half an hour. No charge. No obligation. If we are not the right fit, we will say so here.</p>
+
+      <div class="quiz" id="quizWidget">
+        <p class="quiz-progress" id="quiz-progress" aria-live="polite">Question 1 of 5</p>
+        <div class="quiz-bar" aria-hidden="true"><div class="quiz-bar-fill" id="quiz-bar-fill"></div></div>
+
+        <!-- Q1 -->
+        <div class="quiz-step" data-step="1">
+          <h3>Is your child an NDIS participant?</h3>
+          <button type="button" class="quiz-option" data-value="Yes">Yes</button>
+          <button type="button" class="quiz-option" data-value="Application in progress">Application in progress</button>
+          <button type="button" class="quiz-option" data-value="Not yet">Not yet</button>
+        </div>
+
+        <!-- Q2 -->
+        <div class="quiz-step" data-step="2" hidden>
+          <h3>Does their plan include therapy funding?</h3>
+          <button type="button" class="quiz-option" data-value="Yes">Yes</button>
+          <button type="button" class="quiz-option" data-value="Not sure">Not sure</button>
+          <button type="button" class="quiz-option" data-value="No">No</button>
+        </div>
+
+        <!-- Q3 -->
+        <div class="quiz-step" data-step="3" hidden>
+          <h3>How old is your child?</h3>
+          <button type="button" class="quiz-option" data-value="Under 7">Under 7</button>
+          <button type="button" class="quiz-option" data-value="7-12">7-12</button>
+          <button type="button" class="quiz-option" data-value="13-18">13-18</button>
+          <button type="button" class="quiz-option" data-value="19 or older">19 or older</button>
+        </div>
+
+        <!-- Q4 -->
+        <div class="quiz-step" data-step="4" hidden>
+          <h3>Where are you?</h3>
+          <button type="button" class="quiz-option" data-value="Melbourne West">Melbourne West</button>
+          <button type="button" class="quiz-option" data-value="Melbourne North">Melbourne North</button>
+          <button type="button" class="quiz-option" data-value="Melbourne South-East">Melbourne South-East</button>
+          <button type="button" class="quiz-option" data-value="Melbourne North-West">Melbourne North-West</button>
+          <button type="button" class="quiz-option" data-value="Elsewhere in Melbourne">Elsewhere in Melbourne</button>
+          <button type="button" class="quiz-option" data-value="Outside Melbourne">Outside Melbourne</button>
+        </div>
+
+        <!-- Q5 -->
+        <div class="quiz-step" data-step="5" hidden>
+          <h3>What are you looking for?</h3>
+          <button type="button" class="quiz-option" data-value="Speech">Speech</button>
+          <button type="button" class="quiz-option" data-value="OT">OT</button>
+          <button type="button" class="quiz-option" data-value="Both">Both</button>
+          <button type="button" class="quiz-option" data-value="Not sure yet">Not sure yet</button>
+        </div>
+
+        <!-- Contact capture step: shown for "qualified" and "funding_unsure" only -->
+        <form class="quiz-step quiz-form" id="quizContactForm" data-step="6" hidden novalidate>
+          <h3 id="quizFormHeading">Book your free consult</h3>
+          <p class="sub" id="quizFormFraming"></p>
+
+          <label for="qf-name">Your name</label>
+          <input type="text" id="qf-name" name="name" autocomplete="name" required>
+
+          <label for="qf-mobile">Mobile</label>
+          <input type="tel" id="qf-mobile" name="mobile" autocomplete="tel" inputmode="tel" required>
+
+          <label for="qf-email">Email</label>
+          <input type="email" id="qf-email" name="email" autocomplete="email" required>
+
+          <label for="qf-suburb">Suburb</label>
+          <input type="text" id="qf-suburb" name="suburb" autocomplete="address-level2" required>
+
+          <fieldset>
+            <legend>Best time to call</legend>
+            <div class="radio-row">
+              <label><input type="radio" name="contactTime" value="Morning" required> Morning</label>
+              <label><input type="radio" name="contactTime" value="Afternoon"> Afternoon</label>
+              <label><input type="radio" name="contactTime" value="Evening"> Evening</label>
+            </div>
+          </fieldset>
+
+          <p class="reassure">No spam, no mailing list - we only use this to arrange your consult.</p>
+          <button type="submit" class="btn">Book your free consult</button>
+        </form>
+
+        <!-- Outcome: QUALIFIED -->
+        <div class="quiz-outcome" data-outcome="qualified" hidden tabindex="-1">
+          <h3>Done - a therapist will call you</h3>
+          <p>A therapist will call you to arrange your free half-hour consult. [you to confirm: within one business day?]</p>
+        </div>
+
+        <!-- Outcome: FUNDING UNSURE -->
+        <div class="quiz-outcome" data-outcome="funding_unsure" hidden tabindex="-1">
+          <h3>Done - a therapist will call you</h3>
+          <p>A therapist will call you to arrange your free half-hour consult. [you to confirm: within one business day?] Bring your NDIS plan along - the therapist will tell you honestly what it covers.</p>
+        </div>
+
+        <!-- Outcome: NOT YET -->
+        <div class="quiz-outcome" data-outcome="not_yet" hidden tabindex="-1">
+          <h3>We are not the right fit right now</h3>
+          <p>We are an NDIS-funded children's service in Melbourne, so we are not the right fit right now. If your child does not yet have NDIS access, your GP or paediatrician is the right place to start that process. If your situation is a bit different from what the questions above cover, call us on <a href="tel:1300522139">1300 522 139</a> and we will talk it through honestly.</p>
+        </div>
+
+        <button type="button" class="quiz-back" id="quiz-back" hidden>&#8592; Back</button>
+      </div>
+    </div>
+  </section>
+
+  <!--
+    SECTION 4: DIFFERENTIATION
+    Three columns: clinic waitlist / Alpha Abilities / waiting it out. One
+    conceded row for honesty, per the brief.
+  -->
+  <section aria-labelledby="compare-heading">
+    <div class="wrap">
+      <span class="kicker">Your options</span>
+      <h2 id="compare-heading">The choice most families are actually weighing up</h2>
+      <p class="sub">A clinic and simply waiting are both real options. Here is where each one stands.</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-labelledby="compare-heading">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th scope="col"><span class="kicker">Compare on</span></th>
+              <th scope="col">Clinic waitlist</th>
+              <th scope="col" class="us">Alpha Abilities - home, childcare, school</th>
+              <th scope="col">Waiting it out</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Where therapy happens</th>
+              <td>A clinic room, wherever one has a free slot</td>
+              <td class="us">Your child's own home, childcare or school</td>
+              <td>Nowhere - nothing is happening</td>
+            </tr>
+            <tr>
+              <th scope="row">When it can start</th>
+              <td>After you join a waitlist, often months long</td>
+              <td class="us">A free consult first, then sessions begin without joining a waitlist</td>
+              <td>Never, until you take the first step</td>
+            </tr>
+            <tr>
+              <th scope="row">What the funding buys</th>
+              <td>Therapy hours, minus time lost to travel and reports written off-site</td>
+              <td class="us">Hands-on therapy, not reports</td>
+              <td>Nothing - funding sits unused</td>
+            </tr>
+            <tr>
+              <th scope="row">Travel required</th>
+              <td>Yes - you drive to every session, often after school or work</td>
+              <td class="us">No travel charges - the therapist comes to you</td>
+              <td>None, because nothing is happening</td>
+            </tr>
+            <tr>
+              <th scope="row">Pricing clarity</th>
+              <td>Varies by provider, often unclear until you ask</td>
+              <td class="us">One fixed fortnightly amount, in writing first</td>
+              <td>Not applicable</td>
+            </tr>
+            <tr>
+              <th scope="row">If it is not the right fit</th>
+              <td>Often no honest conversation, just more waiting</td>
+              <td class="us">We will tell you at the consult and point you somewhere better</td>
+              <td>The gap keeps growing while you wait</td>
+            </tr>
+            <tr class="concede">
+              <th scope="row">Worth knowing</th>
+              <td colspan="3">A clinic room can suit a child who focuses better away from home - we will tell you at the consult if that is your child.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!--
+    SECTION 5: WHO YOU'LL WORK WITH
+    Real therapist names, photos and bios are not yet supplied - placeholder
+    cards are clearly labelled rather than inventing people. Credentials
+    strip is real and repeats in the proof section.
+  -->
+  <section class="section-alt" aria-labelledby="people-heading">
+    <div class="wrap">
+      <span class="kicker">The humans</span>
+      <h2 id="people-heading">Who you'll actually work with</h2>
+      <p class="sub">A qualified, registered therapist visits your child - not a rotating roster of strangers.</p>
+      <div class="people">
+        <article class="person">
+          <div class="ph ph--face" role="img" aria-label="Placeholder photo of therapist one">[Photo: real headshot - you to provide]</div>
+          <h3>[you to provide - real therapist name]</h3>
+          <p class="role">[you to provide - role, e.g. Speech Pathologist]</p>
+          <p class="bio">[you to provide - two-line bio: qualifications and experience relevant to children's therapy]</p>
+        </article>
+        <article class="person">
+          <div class="ph ph--face" role="img" aria-label="Placeholder photo of therapist two">[Photo: real headshot - you to provide]</div>
+          <h3>[you to provide - real therapist name]</h3>
+          <p class="role">[you to provide - role, e.g. Occupational Therapist]</p>
+          <p class="bio">[you to provide - two-line bio: qualifications and experience relevant to children's therapy]</p>
+        </article>
+      </div>
+      <p class="credentials-strip">
+        <span><strong>Registrations:</strong> SPA</span>
+        <span>AHPRA</span>
+        <span>VIT</span>
+        <span>ESSA</span>
+        <span>Minimum bachelor-level qualification</span>
+      </p>
+    </div>
+  </section>
+
+  <!--
+    SECTION 6: VALUE BAR - the wireframe's marquee, reassurance lines only.
+  -->
+  <section class="marquee" aria-label="Quick reassurances">
+    <div class="marquee-track">
+      <ul>
+        <li>Hands-on therapy, not reports</li>
+        <li>One fixed fortnightly amount</li>
+        <li>No travel charges</li>
+        <li>Free consult before any paperwork</li>
+        <li>If we are not the right fit, we will say so</li>
+      </ul>
+      <ul aria-hidden="true">
+        <li>Hands-on therapy, not reports</li>
+        <li>One fixed fortnightly amount</li>
+        <li>No travel charges</li>
+        <li>Free consult before any paperwork</li>
+        <li>If we are not the right fit, we will say so</li>
+      </ul>
+    </div>
+  </section>
+
+  <!--
+    SECTION 7: WHAT YOU GET
+    Five services (speech, OT, early intervention, behavioural therapy,
+    exercise physiology) in their own grid, then the two logistics modules
+    (where we visit, with the suburb list; how the fortnight works) below.
+    The hero H1 stays locked to speech + OT (the approved campaign hook);
+    the wider range lives here, in the section intro and the grid itself.
+  -->
+  <section aria-labelledby="modules-heading">
+    <div class="wrap">
+      <span class="kicker">What's inside</span>
+      <h2 id="modules-heading">What you get</h2>
+      <p class="sub">Five services, one visit-you model: speech therapy, occupational therapy, early intervention therapy, behavioural therapy and exercise physiology - all delivered wherever your child already is.</p>
+      <div class="modules services-grid">
+        <article class="module">
+          <h3>Speech therapy</h3>
+          <p>For children who are hard to understand, slow to talk, stuck on certain sounds, or finding it hard to follow instructions and join in conversations.</p>
+        </article>
+        <article class="module">
+          <h3>Occupational therapy</h3>
+          <p>For children who struggle with fine motor skills like pencil grip and buttons, big movements like running and climbing, sensory overwhelm, or daily routines like getting dressed and settling.</p>
+        </article>
+        <article class="module">
+          <h3>Early intervention therapy</h3>
+          <p>For younger children just starting to build the skills that play, communication and daily routines will ask of them, worked on early and at their own pace.</p>
+        </article>
+        <article class="module">
+          <h3>Behavioural therapy</h3>
+          <p>For children who find big feelings, routines or transitions hard to manage, with practical strategies built around how your family's day actually runs.</p>
+        </article>
+        <article class="module">
+          <h3>Exercise physiology</h3>
+          <p>For children building strength, coordination and confidence in movement, with a program shaped around the things your child already enjoys doing.</p>
+        </article>
+      </div>
+
+      <div class="modules modules--logistics">
+        <article class="module">
+          <h3>Where we visit</h3>
+          <p>Home, childcare or school, across Melbourne's growth corridors.</p>
+          <p class="suburbs">Werribee, Point Cook, Hoppers Crossing, Tarneit, Craigieburn, Cranbourne, Clyde, Melton, Sunbury and surrounds.</p>
+        </article>
+        <article class="module">
+          <h3>How the fortnight works</h3>
+          <p>One fixed fortnightly amount, disclosed in writing in your service agreement before you commit to anything. A session looks like a therapist working directly with your child through play and everyday routines - hands-on therapy, not reports.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!--
+    SECTION 8: TIMELINE
+    Five beats, per the brief, including the minute-by-minute consult visit.
+  -->
+  <section class="section-alt" aria-labelledby="timeline-heading">
+    <div class="wrap">
+      <span class="kicker">How it actually goes</span>
+      <h2 id="timeline-heading">From free consult to regular sessions</h2>
+      <p class="sub">Five steps, starting with half an hour that costs nothing.</p>
+      <ol class="timeline">
+        <li>
+          <span class="beat-label">Step one</span>
+          <h3>You book the free consult</h3>
+          <p>Five quick questions, then a therapist calls to arrange a time that suits your family.</p>
+        </li>
+        <li>
+          <span class="beat-label">Step two</span>
+          <h3>A therapist comes to you</h3>
+          <p>The free half-hour visit, minute by minute:</p>
+          <ul class="visit-minutes">
+            <li>Hello and floor play by <strong>minute 1</strong></li>
+            <li>Watching how your child plays and communicates by <strong>minute 10</strong></li>
+            <li>An honest read and a written picture of sessions by <strong>minute 25</strong></li>
+            <li>We leave at <strong>minute 30</strong></li>
+          </ul>
+        </li>
+        <li>
+          <span class="beat-label">Step three</span>
+          <h3>You get the service agreement</h3>
+          <p>The exact fortnightly amount, in writing, before you commit to anything.</p>
+        </li>
+        <li>
+          <span class="beat-label">Step four</span>
+          <h3>Sessions begin</h3>
+          <p>At home, childcare or school - wherever suits your child best.</p>
+        </li>
+        <li>
+          <span class="beat-label">Step five</span>
+          <h3>Regular reviews with you</h3>
+          <p>You hear how things are going and what happens next, in plain language.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!--
+    SECTION 9: AFTER / HONESTY BLOCK
+    Replaces urgency devices with a plain honesty statement.
+  -->
+  <section aria-labelledby="after-heading">
+    <div class="wrap">
+      <span class="kicker">If it is not the right fit</span>
+      <h2 id="after-heading">We will tell you honestly</h2>
+      <div class="honesty-block">
+        <p>If we are not the right fit, we will tell you at the consult and point you somewhere better. No hard sell, no pressure to sign anything on the day - the free consult exists so both sides can be honest before any paperwork happens.</p>
+      </div>
+    </div>
+  </section>
+
+  <!--
+    SECTION 10: PROOF - aggregate rating only. No quoted testimonials, no
+    star-rating widgets or review schema markup, per AHPRA advertising
+    rules for regulated health services. Credentials strip repeats here.
+  -->
+  <section aria-labelledby="proof-heading">
+    <div class="wrap">
+      <span class="kicker">Results</span>
+      <h2 id="proof-heading">What other families say</h2>
+      <p class="sub">We do not quote reviews here - read them yourself on Google.</p>
+
+      <div class="proof-rating">
+        <span class="stars-text">4.8 stars from 33 public Google reviews</span>
+        <span class="stars-sub">Read them yourself, unedited, on our Google profile.</span>
+        <a href="[you to provide - Google profile URL]">View our Google reviews &#8594;</a>
+      </div>
+
+      <p class="credentials-strip">
+        <span><strong>Registrations:</strong> SPA</span>
+        <span>AHPRA</span>
+        <span>VIT</span>
+        <span>ESSA</span>
+        <span>Minimum bachelor-level qualification</span>
+      </p>
+    </div>
+  </section>
+
+  <!--
+    SECTION 11: FAQ - the brief's seven questions, real answers.
+  -->
+  <section class="section-alt faq" aria-labelledby="faq-heading">
+    <div class="wrap">
+      <span class="kicker">Straight answers</span>
+      <h2 id="faq-heading">Questions parents actually ask</h2>
+      <p class="sub">Including the honest one about who this is not for.</p>
+
+      <details>
+        <summary>What does it cost?</summary>
+        <p>One fixed fortnightly amount, disclosed in writing in your service agreement after the free consult, before you commit to anything. No travel charges, no surprise report invoices.</p>
+      </details>
+      <details>
+        <summary>Is home therapy "real" therapy?</summary>
+        <p>Yes. Your child's own home, childcare room or classroom is where they actually need to use these skills, so working there means what they practise carries over into everyday life rather than staying in a clinic room.</p>
+      </details>
+      <details>
+        <summary>What happens at the free consult?</summary>
+        <p>A therapist visits for half an hour - hello and floor play, watching how your child plays and communicates, then an honest read and a written picture of what sessions would look like. No charge, no obligation.</p>
+      </details>
+      <details>
+        <summary>Which NDIS funding does this use?</summary>
+        <p>[you to confirm: plan-managed / self-managed / agency-managed funding types accepted]</p>
+      </details>
+      <details>
+        <summary>Which areas do you cover?</summary>
+        <p>Melbourne's growth corridors, including Werribee, Point Cook, Hoppers Crossing, Tarneit, Craigieburn, Cranbourne, Clyde, Melton, Sunbury and surrounds. If you are outside these areas, ask us at the consult - we may still be able to help.</p>
+      </details>
+      <details>
+        <summary>How soon can sessions start?</summary>
+        <p>[you to confirm: typical days from free consult to first regular session]</p>
+      </details>
+      <details>
+        <summary>Who is this NOT for?</summary>
+        <p>Children without NDIS therapy funding, families outside Melbourne, and anyone wanting clinic-based care only. If any of these describe your family, we will tell you honestly rather than waste your time.</p>
+      </details>
+    </div>
+  </section>
+
+  <!--
+    SECTION 12: FINAL CTA
+  -->
+  <section class="final-cta" aria-labelledby="final-heading">
+    <div class="wrap">
+      <h2 id="final-heading">Speech and OT that comes to your child</h2>
+      <p>A free half-hour consult at your place, then an honest, written picture of what sessions would look like - no waitlist to join, no clinic runs.</p>
+      <a class="btn" href="#quiz">Book your free consult</a>
+      <p class="honesty">Half an hour. No charge. No obligation. If we are not the right fit, we will tell you at the consult.</p>
+    </div>
+  </section>
+
+</main>
+
+<!--
+  SECTION 13: FOOTER - legitimacy signals only, same brand teal as the
+  header. Tagline appears once, here.
+-->
+<footer class="site-footer">
+  <div class="wrap">
+    <img class="logo-img" src="assets/logo.png" alt="Alpha Abilities" width="80" height="32">
+    <span>&copy; 2026 Alpha Abilities. ABN [you to provide]. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="[you to provide - privacy policy link]">Privacy policy</a>
+      <a href="tel:1300522139">1300 522 139</a>
+      <a href="mailto:info@alphaabilities.com.au">info@alphaabilities.com.au</a>
+    </div>
+    <span class="tagline">Where Every Child's Potential Becomes Reality</span>
+  </div>
+</footer>
+
+<script>
+/* FORM_ENDPOINT, META_PIXEL_ID and safeFbq() are declared once, at the very
+   top of the single page script in <head> - this block reuses them rather
+   than redeclaring them. */
+
+/* ============================================================
+   QUALIFIER QUIZ
+   Five questions, one per screen, ALWAYS run in full. Routing is
+   decided only after Q5, using explicit rules (not a points score):
+
+     not_yet         if Q1 === "Not yet" OR Q2 === "No"
+                        OR Q3 === "19 or older" OR Q4 === "Outside Melbourne"
+     funding_unsure  else if Q2 === "Not sure"
+     qualified       else
+
+   "qualified" and "funding_unsure" share the contact-capture form (with
+   different framing copy); "not_yet" shows no form and never fires Lead.
+   ============================================================ */
+(function () {
+  var quiz = document.getElementById('quizWidget');
+  if (!quiz) return;
+
+  var steps    = Array.prototype.slice.call(quiz.querySelectorAll('.quiz-step'));
+  var outcomes = quiz.querySelectorAll('.quiz-outcome');
+  var backBtn  = document.getElementById('quiz-back');
+  var progress = document.getElementById('quiz-progress');
+  var barFill  = document.getElementById('quiz-bar-fill');
+  var contactForm = document.getElementById('quizContactForm');
+  var formHeading = document.getElementById('quizFormHeading');
+  var formFraming = document.getElementById('quizFormFraming');
+
+  var QUESTIONS = 5;          // answer steps (step 6 is the contact-capture form)
+  var current = 0;            // index into `steps`
+  var answers = {};           // { q1: 'Yes', q2: 'No', ... }
+  var quizStarted = false;    // guards the once-only QuizStart event
+  var quizCompleteFired = {}; // guards QuizComplete per outcome, once per session
+  var submitting = false;     // guards double submits / double Lead fires
+  var leadFired = false;
+
+  var REGION_LABELS = {
+    'Melbourne West': 'Melbourne West',
+    'Melbourne North': 'Melbourne North',
+    'Melbourne South-East': 'Melbourne South-East',
+    'Melbourne North-West': 'Melbourne North-West',
+    'Elsewhere in Melbourne': '',
+    'Outside Melbourne': ''
+  };
+
+  function showStep(i) {
+    current = i;
+    steps.forEach(function (s, idx) { s.hidden = idx !== i; });
+    if (i < QUESTIONS) {
+      progress.textContent = 'Question ' + (i + 1) + ' of ' + QUESTIONS;
+    } else {
+      progress.textContent = 'Last step';
+    }
+    barFill.style.width = Math.round((i / (QUESTIONS + 1)) * 100) + '%';
+    backBtn.hidden = i === 0;
+    steps[i].querySelectorAll('.quiz-option').forEach(function (btn) {
+      var qKey = 'q' + (steps[i].getAttribute('data-step'));
+      var prev = answers[qKey] === btn.getAttribute('data-value');
+      btn.setAttribute('aria-pressed', prev ? 'true' : 'false');
+    });
+  }
+
+  function decideOutcome() {
+    var q1 = answers.q1, q2 = answers.q2, q3 = answers.q3, q4 = answers.q4;
+    if (q1 === 'Not yet' || q2 === 'No' || q3 === '19 or older' || q4 === 'Outside Melbourne') {
+      return 'not_yet';
+    }
+    if (q2 === 'Not sure') {
+      return 'funding_unsure';
+    }
+    return 'qualified';
+  }
+
+  function fireQuizComplete(outcome) {
+    if (quizCompleteFired[outcome]) return;
+    quizCompleteFired[outcome] = true;
+    safeFbq('trackCustom', 'QuizComplete', { outcome: outcome });
+  }
+
+  function showOutcome(outcome) {
+    steps.forEach(function (s) { s.hidden = true; });
+    backBtn.hidden = true;
+    progress.textContent = 'Your result';
+    barFill.style.width = '100%';
+
+    outcomes.forEach(function (o) {
+      var match = o.getAttribute('data-outcome') === outcome;
+      o.hidden = !match;
+      if (match) o.focus();
+    });
+
+    fireQuizComplete(outcome);
+  }
+
+  function finish() {
+    var outcome = decideOutcome();
+
+    if (outcome === 'not_yet') {
+      // Honest no: no contact form, no Lead event - ever.
+      showOutcome('not_yet');
+      return;
+    }
+
+    // qualified / funding_unsure: reveal the shared contact form, framed
+    // per outcome, before showing the confirmation outcome panel.
+    steps.forEach(function (s) { s.hidden = true; });
+    backBtn.hidden = false;
+    progress.textContent = 'Last step';
+    barFill.style.width = Math.round((QUESTIONS / (QUESTIONS + 1)) * 100) + '%';
+
+    contactForm.dataset.outcome = outcome;
+    if (outcome === 'funding_unsure') {
+      formHeading.textContent = 'Book the free consult anyway';
+      formFraming.textContent = 'Bring your NDIS plan and the therapist will tell you honestly what it covers.';
+    } else {
+      formHeading.textContent = 'Book your free consult';
+      formFraming.textContent = "Tell us where to reach you and a therapist will call to arrange your free half-hour consult.";
+    }
+
+    var suburbInput = document.getElementById('qf-suburb');
+    suburbInput.value = REGION_LABELS[answers.q4] || '';
+
+    contactForm.hidden = false;
+    current = steps.indexOf(contactForm);
+    contactForm.querySelector('input, select').focus();
+  }
+
+  // Answer buttons: record the choice, fire QuizStart once, advance.
+  steps.forEach(function (step, i) {
+    if (step === contactForm) return; // handled separately below
+    step.querySelectorAll('.quiz-option').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (!quizStarted) {
+          quizStarted = true;
+          safeFbq('trackCustom', 'QuizStart');
+        }
+        var qKey = 'q' + step.getAttribute('data-step');
+        answers[qKey] = btn.getAttribute('data-value');
+
+        if (i + 1 < QUESTIONS) {
+          showStep(i + 1);
+        } else {
+          finish();
+        }
+      });
+    });
+  });
+
+  // Contact-capture form: validate, submit to FORM_ENDPOINT (or simulate
+  // success if no endpoint is configured yet), then show the confirmation
+  // outcome panel and fire Lead exactly once on confirmed success.
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (submitting) return; // guard against double submits
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      return;
+    }
+    submitting = true;
+
+    var outcome = contactForm.dataset.outcome; // 'qualified' | 'funding_unsure'
+    var payload = {
+      name: document.getElementById('qf-name').value,
+      mobile: document.getElementById('qf-mobile').value,
+      email: document.getElementById('qf-email').value,
+      suburb: document.getElementById('qf-suburb').value,
+      preferredContactTime: (contactForm.querySelector('input[name="contactTime"]:checked') || {}).value || '',
+      outcome: outcome,
+      q1_ndisParticipant: answers.q1 || '',
+      q2_therapyFunding: answers.q2 || '',
+      q3_childAge: answers.q3 || '',
+      q4_region: answers.q4 || '',
+      q5_lookingFor: answers.q5 || ''
+    };
+
+    function onSubmitSuccess() {
+      var submitBtn = contactForm.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      showOutcome(outcome);
+
+      // Lead fires only after confirmed success, only for qualified /
+      // funding_unsure, and only once per submission (guarded by leadFired).
+      if (!leadFired) {
+        leadFired = true;
+        safeFbq('track', 'Lead', { content_name: 'free-consult-quiz', outcome: outcome });
+      }
+
+      // ------------------------------------------------------------------
+      // SERVER-SIDE DUPLICATE SLOT: when a Conversions API endpoint exists,
+      // send the same Lead event (with an event_id matching the pixel call
+      // above, for Meta's client/server dedupe) from that server-side call
+      // here. Not built yet - do not add this before an endpoint exists.
+      // ------------------------------------------------------------------
+    }
+
+    if (!FORM_ENDPOINT) {
+      // No endpoint configured yet: simulate success so the funnel and
+      // pixel events can still be tested end to end, but say so loudly
+      // and never claim the submission was actually sent.
+      console.warn('FORM_ENDPOINT not set - submission not sent, Lead not fired');
+      submitting = false;
+      showOutcome(outcome);
+      // Deliberately skip the Lead fire and skip onSubmitSuccess() below -
+      // "not sent" must never look identical to "sent" in the pixel data.
+      return;
+    }
+
+    fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error('Form endpoint responded with ' + res.status);
+        onSubmitSuccess();
+      })
+      .catch(function (err) {
+        submitting = false;
+        console.error('Form submission failed:', err);
+        alert('Something went wrong sending your details. Please call us on 1300 522 139 and we will book you in directly.');
+      });
+  });
+
+  // Back control: step backwards through questions (and from the contact form).
+  backBtn.addEventListener('click', function () {
+    if (contactForm.hidden === false && current === steps.indexOf(contactForm)) {
+      showStep(QUESTIONS - 1);
+      return;
+    }
+    if (current > 0) showStep(current - 1);
+  });
+
+  showStep(0);
+})();
+</script>
+
+</body>
+</html>
