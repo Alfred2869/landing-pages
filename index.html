@@ -963,6 +963,13 @@ function safeFbq() {
   function finish() {
     var outcome = decideOutcome();
 
+    // QuizComplete fires here, when the fifth answer resolves the outcome -
+    // for qualified / funding_unsure that is the moment the contact form
+    // (their outcome screen) appears, not when they submit it. Lead alone
+    // marks submission. The guard in fireQuizComplete keeps the repeat call
+    // from showOutcome() a no-op.
+    fireQuizComplete(outcome);
+
     if (outcome === 'not_yet') {
       // Honest no: no contact form, no Lead event - ever.
       showOutcome('not_yet');
