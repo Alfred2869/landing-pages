@@ -65,7 +65,7 @@ function safeFbq() {
     --bg:         #FAF7F2;  /* page background - warm cream */
     --bg-alt:     #F5F1E8;  /* cream panel */
     --surface:    #FFFFFF;  /* cards, quiz surface */
-    --accent:     #264B5D;  /* brand deep teal - CTAs, links, ticks, timeline dots */
+    --accent:     #294E62;  /* brand deep teal - CTAs, links, ticks, timeline dots */
     --on-accent:  #F4F4F0;  /* text/icons placed on teal surfaces (header, footer, teal buttons) */
     --accent-tint:#E7EEF1;  /* soft teal tint - selected quiz options, subtle highlights */
   }
@@ -150,7 +150,7 @@ function safeFbq() {
      layout shift while assets/logo.png is missing or loading. The <img>'s
      own alt text is the fallback if the file 404s - no separate text
      wordmark needed alongside it. */
-  .logo-img{ display:block; height:44px; width:110px; }
+  .logo-img{ display:block; height:44px; width:60px; }
   .header-actions{ display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; justify-content:flex-end; }
   .header-phone{ font-size:.85rem; font-weight:600; color:var(--on-accent); text-decoration:underline; white-space:nowrap; }
   .site-header .btn{ padding:.55rem 1rem; font-size:.8rem; white-space:nowrap; }
@@ -188,7 +188,7 @@ function safeFbq() {
     background:var(--bg-alt); border-radius:12px; padding:1.5rem;
     min-height:320px;
   }
-  .mascot-img{ display:block; max-height:520px; width:auto; height:auto; max-width:100%; margin:0 auto; }
+  .mascot-img{ display:block; max-height:520px; width:auto; height:auto; max-width:100%; margin:0 auto; border-radius:12px; }
 
   /* ==== 3. Qualifier quiz ==== */
   .quiz{
@@ -334,7 +334,7 @@ function safeFbq() {
   /* ==== 13. Footer - same brand teal treatment as the header ==== */
   .site-footer{ background:var(--accent); padding:2rem 0; font-size:.85rem; color:var(--on-accent); }
   .site-footer .wrap{ display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; justify-content:space-between; align-items:center; }
-  .site-footer .logo-img{ height:32px; width:80px; }
+  .site-footer .logo-img{ height:32px; width:44px; }
   .site-footer a{ color:var(--on-accent); text-decoration:underline; }
   .site-footer .tagline{ width:100%; text-align:center; margin-top:1rem; font-style:italic; color:var(--on-accent); opacity:.85; }
   .footer-links{ display:flex; flex-direction:column; gap:.3rem; }
@@ -377,7 +377,7 @@ function safeFbq() {
 -->
 <header class="site-header">
   <div class="wrap">
-    <img class="logo-img" src="assets/logo.png" alt="Alpha Abilities" width="110" height="44">
+    <img class="logo-img" src="assets/logo.png" alt="Alpha Abilities" width="60" height="44">
     <div class="header-actions">
       <a class="header-phone" href="tel:1300522139">1300 522 139</a>
       <a class="btn btn-on-teal" href="#quiz">Book your free consult</a>
@@ -416,7 +416,7 @@ function safeFbq() {
         the layout intentional if the image is missing or still loading.
       -->
       <div class="hero-visual">
-        <img class="mascot-img" src="assets/mascot.png" alt="Alpha Abilities mascot - a friendly wolf therapist holding a services clipboard" width="364" height="520" loading="lazy">
+        <img class="mascot-img" src="assets/mascot.jpg" alt="Alpha Abilities mascot - a friendly wolf therapist holding a services clipboard" width="368" height="520" loading="lazy">
       </div>
     </div>
   </section>
@@ -871,7 +871,7 @@ function safeFbq() {
 -->
 <footer class="site-footer">
   <div class="wrap">
-    <img class="logo-img" src="assets/logo.png" alt="Alpha Abilities" width="80" height="32">
+    <img class="logo-img" src="assets/logo.png" alt="Alpha Abilities" width="44" height="32">
     <span>&copy; 2026 Alpha Abilities. ABN [you to provide]. All rights reserved.</span>
     <div class="footer-links">
       <a href="[you to provide - privacy policy link]">Privacy policy</a>

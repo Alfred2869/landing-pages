@@ -10,15 +10,15 @@
   <rect x="100" y="94" width="56" height="42" rx="3" fill="#3E6B80" transform="rotate(-4 100 94)"/>
   <rect x="176" y="92" width="48" height="56" rx="3" fill="#D9A441" transform="rotate(3 176 92)"/>
   <path d="M120 168 l22 -30 22 30 Z" fill="#C9764F"/>
-  <rect x="182" y="164" width="60" height="36" rx="3" fill="#264B5D" transform="rotate(-3 182 164)"/>
+  <rect x="182" y="164" width="60" height="36" rx="3" fill="#294E62" transform="rotate(-3 182 164)"/>
   <!-- window -->
-  <rect x="628" y="52" width="212" height="222" rx="10" fill="#264B5D"/>
+  <rect x="628" y="52" width="212" height="222" rx="10" fill="#294E62"/>
   <rect x="644" y="68" width="180" height="190" rx="4" fill="#F6FBFD"/>
-  <rect x="729" y="68" width="10" height="190" fill="#264B5D"/>
-  <rect x="644" y="158" width="180" height="10" fill="#264B5D"/>
+  <rect x="729" y="68" width="10" height="190" fill="#294E62"/>
+  <rect x="644" y="158" width="180" height="10" fill="#294E62"/>
   <!-- bookshelf under the window -->
   <rect x="636" y="298" width="196" height="84" rx="6" fill="#C0906A"/>
-  <rect x="650" y="310" width="14" height="60" rx="2" fill="#264B5D"/>
+  <rect x="650" y="310" width="14" height="60" rx="2" fill="#294E62"/>
   <rect x="668" y="316" width="14" height="54" rx="2" fill="#D9A441"/>
   <rect x="686" y="308" width="14" height="62" rx="2" fill="#C9764F"/>
   <rect x="704" y="318" width="14" height="52" rx="2" fill="#3E6B80"/>
@@ -42,9 +42,9 @@
   <circle cx="540" cy="270" r="4.5" fill="#23201C"/>
   <circle cx="522" cy="270" r="4.5" fill="#23201C"/>
   <path d="M524 284 q9 7 18 0" stroke="#23201C" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-  <path d="M498 400 q0 -96 52 -96 q50 0 50 96 Z" fill="#264B5D"/>
+  <path d="M498 400 q0 -96 52 -96 q50 0 50 96 Z" fill="#294E62"/>
   <!-- adult's arm guiding, pointing at the paper -->
-  <rect x="452" y="344" width="88" height="24" rx="12" fill="#264B5D" transform="rotate(24 452 344)"/>
+  <rect x="452" y="344" width="88" height="24" rx="12" fill="#294E62" transform="rotate(24 452 344)"/>
   <circle cx="452" cy="386" r="12" fill="#C68B62"/>
   <!-- desk -->
   <rect x="262" y="398" width="392" height="24" rx="8" fill="#C0906A"/>
@@ -60,6 +60,6 @@
   </g>
   <rect x="486" y="392" width="52" height="9" rx="4.5" fill="#D9A441" transform="rotate(-8 486 392)"/>
   <path d="M540 385 l12 3 -10 7 Z" fill="#4A3728"/>
-  <rect x="308" y="388" width="20" height="20" rx="3" fill="#264B5D" transform="rotate(8 308 388)"/>
+  <rect x="308" y="388" width="20" height="20" rx="3" fill="#294E62" transform="rotate(8 308 388)"/>
   <rect x="336" y="386" width="20" height="20" rx="3" fill="#C9764F" transform="rotate(-6 336 386)"/>
 </svg>
