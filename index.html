@@ -51,6 +51,34 @@ function safeFbq() {
     fbq.apply(null, arguments);
   }
 }
+
+/* ---- Ad attribution (UTM) capture ----
+   Ad sets are split by location and Meta fills utm_content with the ad
+   set's name via its {{adset.name}} dynamic parameter, so utm_content is
+   the location stamp on every lead. Params are captured on first load and
+   kept in sessionStorage so they survive a reload mid-visit and are still
+   attached when the quiz form finally submits. Storage can be blocked
+   (private browsing) - attribution is best-effort, never load-bearing. */
+var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+(function () {
+  try {
+    var qs = new URLSearchParams(window.location.search);
+    if (UTM_KEYS.some(function (k) { return qs.has(k); })) {
+      UTM_KEYS.forEach(function (k) {
+        sessionStorage.setItem(k, qs.get(k) || '');
+      });
+    }
+  } catch (e) {}
+})();
+function getAttribution() {
+  var out = {};
+  UTM_KEYS.forEach(function (k) {
+    var v = '';
+    try { v = sessionStorage.getItem(k) || ''; } catch (e) {}
+    out[k] = v;
+  });
+  return out;
+}
 </script>
 <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=[you to provide - Meta Pixel ID]&ev=PageView&noscript=1"
@@ -1016,7 +1044,8 @@ function safeFbq() {
       q2_therapyFunding: answers.q2 || '',
       q3_childAge: answers.q3 || '',
       q4_region: answers.q4 || '',
-      q5_lookingFor: answers.q5 || ''
+      q5_lookingFor: answers.q5 || '',
+      utm: getAttribution()
     };
 
     function onSubmitSuccess() {
