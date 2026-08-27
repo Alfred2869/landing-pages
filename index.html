@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Speech and OT that comes to your child | Alpha Abilities Melbourne</title>
-<meta name="description" content="NDIS speech pathology and occupational therapy for kids, delivered at home, childcare or school across Melbourne. Free half-hour consult, no waitlist.">
+<meta name="description" content="NDIS speech pathology and occupational therapy for kids, delivered at home, childcare or school across Melbourne and Geelong. Free half-hour consult, no waitlist.">
 
 <!-- Google Fonts: Poppins 600/700 for display use only (headings, wordmark, buttons). Body stays on the system sans stack. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -355,6 +355,9 @@ function getAttribution() {
   .site-footer .tagline{ width:100%; text-align:center; margin-top:1rem; font-style:italic; color:var(--on-accent); opacity:.85; }
   .footer-links{ display:flex; flex-direction:column; gap:.3rem; }
 
+  /* Registered-provider badge in the hero, under the reassurance line */
+  .ndis-badge{ display:block; width:110px; height:auto; margin-top:1.5rem; }
+
   /* ==== Brand photos - real-session photography in the two visit settings ==== */
   .illus{ display:block; width:100%; height:auto; border-radius:12px; }
   .services-illus{ margin:2rem auto 0; max-width:760px; }
@@ -411,7 +414,7 @@ function getAttribution() {
     <div class="wrap">
       <div>
         <h1 id="hero-heading">Speech &amp; Occupational Therapy that comes to your child</h1>
-        <p class="sub">At home, childcare or school, anywhere in Melbourne. It starts with a free 30-minute consult at your place - no waitlist to join, no clinic runs.</p>
+        <p class="sub">At home, childcare or school, anywhere in Melbourne or Geelong. It starts with a free 30-minute consult at your place - no waitlist to join, no clinic runs.</p>
         <ul>
           <li>Therapy in your child's real environment - home, childcare or school</li>
           <li>A qualified, registered and experienced therapist</li>
@@ -419,6 +422,7 @@ function getAttribution() {
         </ul>
         <a class="btn" href="#quiz">Book your free consult</a>
         <p class="reassure-line">Half an hour. No charge. No obligation.</p>
+        <img class="ndis-badge" src="assets/I-love-NDIS-logo.webp" alt="I Heart NDIS - Registered NDIS Provider" width="110" height="110" loading="lazy">
       </div>
       <!--
         Hero visual: the supplied mascot illustration (assets/mascot.png - a
@@ -439,7 +443,7 @@ function getAttribution() {
     SECTION 3: QUALIFIER QUIZ (#quiz) - the primary conversion mechanic.
     Five questions, one per screen, always run in full - routing happens only
     after Q5. Explicit rules (not a points/threshold score):
-      - outcome "not_yet"       if Q1="Not yet" OR Q2="No" OR Q3="19 or older" OR Q4="Outside Melbourne"
+      - outcome "not_yet"       if Q1="Not yet" OR Q2="No" OR Q3="19 or older" OR Q4="Somewhere else"
       - else outcome "funding_unsure" if Q2="Not sure"
       - else outcome "qualified"
     The "qualified" and "funding_unsure" branches share the same contact form
@@ -489,7 +493,8 @@ function getAttribution() {
           <button type="button" class="quiz-option" data-value="Melbourne South-East">Melbourne South-East</button>
           <button type="button" class="quiz-option" data-value="Melbourne North-West">Melbourne North-West</button>
           <button type="button" class="quiz-option" data-value="Elsewhere in Melbourne">Elsewhere in Melbourne</button>
-          <button type="button" class="quiz-option" data-value="Outside Melbourne">Outside Melbourne</button>
+          <button type="button" class="quiz-option" data-value="Geelong">Geelong</button>
+          <button type="button" class="quiz-option" data-value="Somewhere else">Somewhere else</button>
         </div>
 
         <!-- Q5 -->
@@ -546,7 +551,7 @@ function getAttribution() {
         <!-- Outcome: NOT YET -->
         <div class="quiz-outcome" data-outcome="not_yet" hidden tabindex="-1">
           <h3>We are not the right fit right now</h3>
-          <p>We are an NDIS-funded children's service in Melbourne, so we are not the right fit right now. If your child does not yet have NDIS access, your GP or paediatrician is the right place to start that process. If your situation is a bit different from what the questions above cover, call us on <a href="tel:1300522139">1300 522 139</a> and we will talk it through honestly.</p>
+          <p>We are an NDIS-funded children's service in Melbourne and Geelong, so we are not the right fit right now. If your child does not yet have NDIS access, your GP or paediatrician is the right place to start that process. If your situation is a bit different from what the questions above cover, call us on <a href="tel:1300522139">1300 522 139</a> and we will talk it through honestly.</p>
         </div>
 
         <button type="button" class="quiz-back" id="quiz-back" hidden>&#8592; Back</button>
@@ -688,8 +693,8 @@ function getAttribution() {
       <div class="modules modules--logistics">
         <article class="module">
           <h3>Where we visit</h3>
-          <p>Home, childcare or school, across Melbourne's growth corridors.</p>
-          <p class="suburbs">Werribee, Point Cook, Hoppers Crossing, Tarneit, Craigieburn, Cranbourne, Clyde, Melton, Sunbury and surrounds.</p>
+          <p>Home, childcare or school, across Melbourne's growth corridors and Geelong.</p>
+          <p class="suburbs">Werribee, Point Cook, Hoppers Crossing, Tarneit, Craigieburn, Cranbourne, Clyde, Melton, Sunbury, Geelong and surrounds.</p>
         </article>
         <article class="module">
           <h3>What happens next</h3>
@@ -778,7 +783,6 @@ function getAttribution() {
       <div class="proof-rating">
         <span class="stars-text">4.8 stars from 33 public Google reviews</span>
         <span class="stars-sub">Read them yourself, unedited, on our Google profile.</span>
-        <a href="[you to provide - Google profile URL]">View our Google reviews &#8594;</a>
       </div>
 
       <p class="credentials-strip">
@@ -814,19 +818,19 @@ function getAttribution() {
       </details>
       <details>
         <summary>Which NDIS funding does this use?</summary>
-        <p>[you to confirm: plan-managed / self-managed / agency-managed funding types accepted]</p>
+        <p>Self-managed, plan-managed and NDIA (agency) managed plans are all accepted. Bring your plan to the free consult and the therapist will tell you honestly what it covers.</p>
       </details>
       <details>
         <summary>Which areas do you cover?</summary>
-        <p>Melbourne's growth corridors, including Werribee, Point Cook, Hoppers Crossing, Tarneit, Craigieburn, Cranbourne, Clyde, Melton, Sunbury and surrounds. If you are outside these areas, ask us at the consult - we may still be able to help.</p>
+        <p>Melbourne's growth corridors and Geelong, including Werribee, Point Cook, Hoppers Crossing, Tarneit, Craigieburn, Cranbourne, Clyde, Melton, Sunbury, Geelong and surrounds. If you are outside these areas, ask us at the consult - we may still be able to help.</p>
       </details>
       <details>
         <summary>How soon can sessions start?</summary>
-        <p>[you to confirm: typical days from free consult to first regular session]</p>
+        <p>Typically within five business days of the free consult. Once you accept the service agreement, your first regular session is booked at a time that suits your family.</p>
       </details>
       <details>
         <summary>Who is this NOT for?</summary>
-        <p>Children without NDIS therapy funding, families outside Melbourne, and anyone wanting clinic-based care only. If any of these describe your family, we will tell you honestly rather than waste your time.</p>
+        <p>Children without NDIS therapy funding, families outside Melbourne and Geelong, and anyone wanting clinic-based care only. If any of these describe your family, we will tell you honestly rather than waste your time.</p>
       </details>
     </div>
   </section>
@@ -854,7 +858,6 @@ function getAttribution() {
     <img class="logo-img" src="assets/logo.png" alt="Alpha Abilities" width="44" height="32">
     <span>&copy; 2026 Alpha Abilities. ABN 80 633 804 065. All rights reserved.</span>
     <div class="footer-links">
-      <a href="[you to provide - privacy policy link]">Privacy policy</a>
       <a href="tel:1300522139">1300 522 139</a>
       <a href="mailto:info@alphaabilities.com.au">info@alphaabilities.com.au</a>
     </div>
@@ -873,7 +876,7 @@ function getAttribution() {
    decided only after Q5, using explicit rules (not a points score):
 
      not_yet         if Q1 === "Not yet" OR Q2 === "No"
-                        OR Q3 === "19 or older" OR Q4 === "Outside Melbourne"
+                        OR Q3 === "19 or older" OR Q4 === "Somewhere else"
      funding_unsure  else if Q2 === "Not sure"
      qualified       else
 
@@ -907,7 +910,8 @@ function getAttribution() {
     'Melbourne South-East': 'Melbourne South-East',
     'Melbourne North-West': 'Melbourne North-West',
     'Elsewhere in Melbourne': '',
-    'Outside Melbourne': ''
+    'Geelong': 'Geelong',
+    'Somewhere else': ''
   };
 
   function showStep(i) {
@@ -929,7 +933,7 @@ function getAttribution() {
 
   function decideOutcome() {
     var q1 = answers.q1, q2 = answers.q2, q3 = answers.q3, q4 = answers.q4;
-    if (q1 === 'Not yet' || q2 === 'No' || q3 === '19 or older' || q4 === 'Outside Melbourne') {
+    if (q1 === 'Not yet' || q2 === 'No' || q3 === '19 or older' || q4 === 'Somewhere else') {
       return 'not_yet';
     }
     if (q2 === 'Not sure') {
