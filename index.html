@@ -124,14 +124,6 @@ function safeFbq() {
   .btn-on-teal{ color:var(--accent); background:var(--on-accent); border-color:var(--on-accent); }
   .btn-on-teal:hover{ opacity:.9; }
 
-  /* ==== Image placeholders - labelled slots, no stock, no AI children ==== */
-  .ph{
-    display:flex; align-items:center; justify-content:center; text-align:center;
-    background:var(--bg-alt); border:2px dashed var(--line); border-radius:8px;
-    color:var(--muted); font-size:.85rem; padding:1rem; min-height:200px;
-  }
-  .ph--face{ min-height:160px; aspect-ratio:1/1; border-radius:50%; width:140px; margin:0 auto 1rem; }
-
   /* ==== 1. Sticky header ====
      Brand teal bar - the logo artwork is white-on-teal and only works on
      this background, so the header (and footer, to match) carry the brand
@@ -240,11 +232,7 @@ function safeFbq() {
   .compare tbody tr:last-child .us{ border-bottom:3px solid var(--accent); }
   .compare .concede td, .compare .concede th{ font-style:italic; }
 
-  /* ==== 5. People cards ==== */
-  .people{ display:grid; gap:1.5rem; grid-template-columns:1fr; }
-  .person{ border:1px solid var(--line); border-radius:10px; padding:1.5rem; text-align:center; background:var(--surface); }
-  .person .role{ color:var(--muted); font-size:.9rem; margin-bottom:.75rem; }
-  .person .bio{ text-align:left; font-size:.95rem; margin:0 auto; }
+  /* ==== Credentials strip (used in the proof section) ==== */
   .credentials-strip{
     margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--line);
     display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; align-items:baseline;
@@ -348,7 +336,6 @@ function safeFbq() {
   /* ==== Responsive: two-column layouts from tablet up ==== */
   @media (min-width:700px){
     .hero .wrap{ grid-template-columns:3fr 2fr; }
-    .people{ grid-template-columns:1fr 1fr; }
     .modules{ grid-template-columns:1fr 1fr; }
   }
   @media (min-width:900px){
@@ -607,40 +594,6 @@ function safeFbq() {
     </div>
   </section>
 
-  <!--
-    SECTION 5: WHO YOU'LL WORK WITH
-    Real therapist names, photos and bios are not yet supplied - placeholder
-    cards are clearly labelled rather than inventing people. Credentials
-    strip is real and repeats in the proof section.
-  -->
-  <section class="section-alt" aria-labelledby="people-heading">
-    <div class="wrap">
-      <span class="kicker">The humans</span>
-      <h2 id="people-heading">Who you'll actually work with</h2>
-      <p class="sub">A qualified, registered therapist visits your child - not a rotating roster of strangers.</p>
-      <div class="people">
-        <article class="person">
-          <div class="ph ph--face" role="img" aria-label="Placeholder photo of therapist one">[Photo: real headshot - you to provide]</div>
-          <h3>[you to provide - real therapist name]</h3>
-          <p class="role">[you to provide - role, e.g. Speech Pathologist]</p>
-          <p class="bio">[you to provide - two-line bio: qualifications and experience relevant to children's therapy]</p>
-        </article>
-        <article class="person">
-          <div class="ph ph--face" role="img" aria-label="Placeholder photo of therapist two">[Photo: real headshot - you to provide]</div>
-          <h3>[you to provide - real therapist name]</h3>
-          <p class="role">[you to provide - role, e.g. Occupational Therapist]</p>
-          <p class="bio">[you to provide - two-line bio: qualifications and experience relevant to children's therapy]</p>
-        </article>
-      </div>
-      <p class="credentials-strip">
-        <span><strong>Registrations:</strong> SPA</span>
-        <span>AHPRA</span>
-        <span>VIT</span>
-        <span>ESSA</span>
-        <span>Minimum bachelor-level qualification</span>
-      </p>
-    </div>
-  </section>
 
   <!--
     SECTION 6: VALUE BAR - the wireframe's marquee, reassurance lines only.
