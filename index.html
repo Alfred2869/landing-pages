@@ -21,7 +21,7 @@
 -->
 <script>
 /* ---- CONFIG - fill these in before launch ---- */
-const FORM_ENDPOINT = ''; // [you to provide - Formspree/Web3Forms endpoint or Cloudflare Pages Function]
+const FORM_ENDPOINT = ''; // Google Apps Script web app URL (see apps-script/leads-to-sheet.gs)
 const META_PIXEL_ID = ''; // [you to provide - Meta Events Manager -> Data sources]
 
 /* ---- Meta Pixel base snippet ----
@@ -824,7 +824,7 @@ function safeFbq() {
 <footer class="site-footer">
   <div class="wrap">
     <img class="logo-img" src="assets/logo.png" alt="Alpha Abilities" width="44" height="32">
-    <span>&copy; 2026 Alpha Abilities. ABN [you to provide]. All rights reserved.</span>
+    <span>&copy; 2026 Alpha Abilities. ABN 80 633 804 065. All rights reserved.</span>
     <div class="footer-links">
       <a href="[you to provide - privacy policy link]">Privacy policy</a>
       <a href="tel:1300522139">1300 522 139</a>
@@ -1051,13 +1051,21 @@ function safeFbq() {
       return;
     }
 
+    // JSON payload sent as text/plain: Apps Script web apps cannot answer a
+    // CORS preflight, so the request must qualify as a "simple" request.
+    // Apps Script also returns HTTP 200 on its own errors, so success is
+    // judged on the { ok: true } body, not the status alone.
     fetch(FORM_ENDPOINT, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(payload)
     })
       .then(function (res) {
         if (!res.ok) throw new Error('Form endpoint responded with ' + res.status);
+        return res.json();
+      })
+      .then(function (body) {
+        if (!body || body.ok !== true) throw new Error('Form endpoint reported failure: ' + JSON.stringify(body));
         onSubmitSuccess();
       })
       .catch(function (err) {
