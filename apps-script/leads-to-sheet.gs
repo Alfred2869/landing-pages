@@ -11,11 +11,21 @@
  *
  * ROUTING: strictly by the suburb the person typed into the form (and any
  * 4-digit postcode found in that field), looked up in the explicit
- * region mapping below. The Meta ad set name is NOT used for routing any
- * more - it told us which ads the person saw, not where they live, which
- * is how leads ended up in the wrong tabs. A lead whose suburb/postcode
- * is not in the mapping goes to the "Unsorted" tab with a review flag in
- * the Sales Notes column.
+ * region mapping below. The Meta ad set / campaign name is NOT used for
+ * routing any more - it told us which ads the person saw, not where they
+ * live, which is how leads ended up in the wrong tabs. If the suburb
+ * field holds no mapped suburb/postcode (the quiz pre-fills it with the
+ * broad Q4 label and some parents leave it), the Q4 region answer routes
+ * it the old way (Melbourne West -> Werribee, North-West -> Melton,
+ * North -> Craigieburn, South-East -> Cranbourne, Geelong -> Geelong).
+ * Anything still unmatched goes to the "Unsorted" tab with a review flag
+ * in the Sales Notes column. NOTE: the quiz still has no "Melbourne
+ * East" option, so Ringwood leads only route when a real suburb or
+ * postcode is typed.
+ *
+ * resortUnsorted() is a one-off you run from the editor (Run button) to
+ * move rows already sitting in Unsorted into their region tabs using the
+ * same rules. Rows it cannot place stay where they are.
  *
  * Region tabs are found by consonant skeleton (lowercase, letters only,
  * vowels stripped), so the existing "Cragieburn" tab still matches the
@@ -129,6 +139,16 @@ function extractPostcode(s) {
   return m ? m[1] : '';
 }
 
+// Broad Q4 quiz labels -> region tab, the pre-mapping routing rule. Kept as
+// a fallback for leads that never type a real suburb. Keys are normalise()d.
+var Q4_LABEL_TABS = {
+  melbournewest: 'Werribee',
+  melbournenorthwest: 'Melton',
+  melbournenorth: 'Craigieburn',
+  melbournesoutheast: 'Cranbourne',
+  geelong: 'Geelong'
+};
+
 // The region whose suburb list or postcode list covers this lead, or null.
 function regionFor(suburbText) {
   var name = normalise(suburbText);
@@ -141,6 +161,22 @@ function regionFor(suburbText) {
     if (postcode && r.postcodes.indexOf(postcode) !== -1) return r;
   }
   return null;
+}
+
+function regionForTabName(tabName) {
+  for (var i = 0; i < REGIONS.length; i++) {
+    if (REGIONS[i].tab === tabName) return REGIONS[i];
+  }
+  return null;
+}
+
+// Suburb/postcode mapping first; broad Q4 label (in the Q4 answer or left
+// sitting in the suburb field) second; null means Unsorted.
+function regionForLead(suburbText, q4Region) {
+  var region = regionFor(suburbText);
+  if (region) return region;
+  var byLabel = Q4_LABEL_TABS[normalise(q4Region)] || Q4_LABEL_TABS[normalise(suburbText)];
+  return byLabel ? regionForTabName(byLabel) : null;
 }
 
 // Find the region's tab by consonant skeleton so "Cragieburn" (sheet
@@ -169,7 +205,7 @@ function doPost(e) {
     var utm = data.utm || {};
     var ss = SpreadsheetApp.getActiveSpreadsheet();
 
-    var region = regionFor(data.suburb);
+    var region = regionForLead(data.suburb, data.q4_region);
     var sheet = region
       ? tabForRegion(ss, region)
       : (ss.getSheetByName('Unsorted') || ss.insertSheet('Unsorted'));
@@ -206,4 +242,42 @@ function doPost(e) {
       .createTextOutput(JSON.stringify({ ok: false, error: String(err) }))
       .setMimeType(ContentService.MimeType.JSON);
   }
+}
+
+/**
+ * One-off: move rows already sitting in Unsorted into their region tabs
+ * using the suburb/postcode mapping (with the Q4-label fallback). Run it
+ * from the editor (select resortUnsorted, press Run). Safe to run again
+ * later - rows it cannot place stay where they are, with the REVIEW flag
+ * added to Sales Notes if that cell is empty.
+ */
+function resortUnsorted() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var src = ss.getSheetByName('Unsorted');
+  if (!src || src.getLastRow() < 2) return;
+  var lastCol = Math.max(src.getLastColumn(), BASE_HEADERS.length + EXTRA_HEADERS.length);
+  var rows = src.getRange(2, 1, src.getLastRow() - 1, lastCol).getValues();
+  var moved = 0;
+
+  // 0-based columns in the row array: 3 = D Postcode, 5 = F Sales Notes,
+  // 6 = G Suburb, 12 = M Q4 Region.
+  for (var r = rows.length - 1; r >= 0; r--) {
+    var row = rows[r];
+    if (!row.join('')) continue; // blank row
+    var region = regionForLead(row[6], row[12]) ||
+      (row[3] ? regionForLead(String(row[3]), '') : null);
+    if (!region) {
+      if (!row[5]) src.getRange(r + 2, 6).setValue('REVIEW: suburb/postcode not in region mapping');
+      continue;
+    }
+    var target = tabForRegion(ss, region);
+    ensureHeaders(target);
+    // Re-apply the leading apostrophe so mobiles keep their 0.
+    var out = row.slice();
+    if (out[1] !== '' && String(out[1]).charAt(0) !== "'") out[1] = "'" + out[1];
+    target.appendRow(out);
+    src.deleteRow(r + 2);
+    moved++;
+  }
+  Logger.log('Moved ' + moved + ' row(s) out of Unsorted.');
 }
