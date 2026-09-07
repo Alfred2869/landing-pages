@@ -14,14 +14,12 @@
  * region mapping below. The Meta ad set / campaign name is NOT used for
  * routing any more - it told us which ads the person saw, not where they
  * live, which is how leads ended up in the wrong tabs. If the suburb
- * field holds no mapped suburb/postcode (the quiz pre-fills it with the
- * broad Q4 label and some parents leave it), the Q4 region answer routes
- * it the old way (Melbourne West -> Werribee, North-West -> Melton,
- * North -> Craigieburn, South-East -> Cranbourne, Geelong -> Geelong).
- * Anything still unmatched goes to the "Unsorted" tab with a review flag
- * in the Sales Notes column. NOTE: the quiz still has no "Melbourne
- * East" option, so Ringwood leads only route when a real suburb or
- * postcode is typed.
+ * field holds no mapped suburb/postcode, the Q4 region answer routes the
+ * lead instead: current labels ("Werribee & surrounding suburbs (Western
+ * region)" etc.) via the anchor-suburb scan, legacy compass labels
+ * ("Melbourne West" etc.) via Q4_LABEL_TABS. "Other (Somewhere else)"
+ * and anything still unmatched goes to the "Unsorted" tab with a review
+ * flag in the Sales Notes column.
  *
  * resortUnsorted() is a one-off you run from the editor (Run button) to
  * move rows already sitting in Unsorted into their region tabs using the
