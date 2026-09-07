@@ -139,8 +139,11 @@ function extractPostcode(s) {
   return m ? m[1] : '';
 }
 
-// Broad Q4 quiz labels -> region tab, the pre-mapping routing rule. Kept as
-// a fallback for leads that never type a real suburb. Keys are normalise()d.
+// Legacy broad Q4 quiz labels -> region tab (the quiz used compass regions
+// until Sep 2026). Kept so old rows still re-sort. Keys are normalise()d.
+// Current Q4 labels ("Werribee & surrounding suburbs (Western region)", etc.)
+// name their anchor suburb and are matched by the anchor scan in
+// regionForLead; "Other (Somewhere else)" matches nothing -> Unsorted.
 var Q4_LABEL_TABS = {
   melbournewest: 'Werribee',
   melbournenorthwest: 'Melton',
@@ -176,7 +179,14 @@ function regionForLead(suburbText, q4Region) {
   var region = regionFor(suburbText);
   if (region) return region;
   var byLabel = Q4_LABEL_TABS[normalise(q4Region)] || Q4_LABEL_TABS[normalise(suburbText)];
-  return byLabel ? regionForTabName(byLabel) : null;
+  if (byLabel) return regionForTabName(byLabel);
+  // Anchor scan: current Q4 labels contain their region's anchor suburb
+  // ("Ringwood & surrounding suburbs (Eastern region)" -> Ringwood).
+  var q4 = normalise(q4Region);
+  for (var i = 0; i < REGIONS.length; i++) {
+    if (q4 && q4.indexOf(normalise(REGIONS[i].tab)) !== -1) return REGIONS[i];
+  }
+  return null;
 }
 
 // Find the region's tab by consonant skeleton so "Cragieburn" (sheet

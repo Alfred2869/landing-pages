@@ -194,12 +194,11 @@ function getAttribution() {
 
   /* ==== 2. Hero ==== */
   .hero .wrap{ display:grid; gap:2rem; grid-template-columns:1fr; align-items:center; }
-  .hero ul{ list-style:none; margin:1.25rem 0; }
-  .hero li{ padding-left:1.6rem; position:relative; margin-bottom:.55rem; }
-  .hero li::before{
-    content:""; position:absolute; left:0; top:.42em; width:.9em; height:.9em;
-    border:2px solid var(--accent); border-radius:50%;
-  }
+  /* Plain disc bullets - the earlier open-circle markers read as radio
+     buttons / select options to some visitors. */
+  .hero ul{ list-style:disc; margin:1.25rem 0; padding-left:1.4rem; }
+  .hero li{ margin-bottom:.55rem; }
+  .hero li::marker{ color:var(--accent); }
   .reassure-line{ font-size:.9rem; color:var(--muted); margin-top:.75rem; }
   /* Hero visual slot - min-height keeps it looking intentional whether the
      mascot image is missing, still loading, or present. */
@@ -425,7 +424,7 @@ function getAttribution() {
         <ul>
           <li>Therapy in your child's real environment - home, childcare or school</li>
           <li>A qualified, registered and experienced therapist</li>
-          <li>Hands-on therapy, not reports</li>
+          <li>Hands-on therapy, not just reports</li>
         </ul>
         <a class="btn" href="#quiz">Book your free consult</a>
         <p class="reassure-line">Half an hour. No charge. No obligation.</p>
@@ -456,11 +455,13 @@ function getAttribution() {
     SECTION 3: QUALIFIER QUIZ (#quiz) - the primary conversion mechanic.
     Five questions, one per screen, always run in full - routing happens only
     after Q5. Explicit rules (not a points/threshold score):
-      - outcome "not_yet"       if Q1="Not yet" OR Q2="No" OR Q3="19 or older" OR Q4="Somewhere else"
+      - outcome "not_yet"       if Q1="Not yet" OR Q2="No" OR Q3="19 or older"
+        (Q4 no longer disqualifies - "Other (Somewhere else)" leads are
+        captured and land in the Unsorted tab for manual review)
       - else outcome "funding_unsure" if Q2="Not sure"
       - else outcome "qualified"
     The "qualified" and "funding_unsure" branches share the same contact form
-    (name, mobile, email, suburb pre-filled from Q4, preferred contact time)
+    (name, mobile, email, suburb typed by the parent, preferred contact time)
     but different framing copy. "not_yet" shows no form and fires no Lead.
   -->
   <section id="quiz" class="section-alt" aria-labelledby="quiz-heading">
@@ -500,14 +501,14 @@ function getAttribution() {
 
         <!-- Q4 -->
         <div class="quiz-step" data-step="4" hidden>
-          <h3>Where are you?</h3>
-          <button type="button" class="quiz-option" data-value="Melbourne West">Melbourne West</button>
-          <button type="button" class="quiz-option" data-value="Melbourne North">Melbourne North</button>
-          <button type="button" class="quiz-option" data-value="Melbourne South-East">Melbourne South-East</button>
-          <button type="button" class="quiz-option" data-value="Melbourne North-West">Melbourne North-West</button>
-          <button type="button" class="quiz-option" data-value="Elsewhere in Melbourne">Elsewhere in Melbourne</button>
-          <button type="button" class="quiz-option" data-value="Geelong">Geelong</button>
-          <button type="button" class="quiz-option" data-value="Somewhere else">Somewhere else</button>
+          <h3>Where are you located?</h3>
+          <button type="button" class="quiz-option" data-value="Werribee &amp; surrounding suburbs (Western region)">Werribee &amp; surrounding suburbs (Western region)</button>
+          <button type="button" class="quiz-option" data-value="Craigieburn &amp; surrounding suburbs (Northern region)">Craigieburn &amp; surrounding suburbs (Northern region)</button>
+          <button type="button" class="quiz-option" data-value="Cranbourne &amp; surrounding suburbs (South-Eastern region)">Cranbourne &amp; surrounding suburbs (South-Eastern region)</button>
+          <button type="button" class="quiz-option" data-value="Melton &amp; surrounding suburbs (Greater Western region)">Melton &amp; surrounding suburbs (Greater Western region)</button>
+          <button type="button" class="quiz-option" data-value="Ringwood &amp; surrounding suburbs (Eastern region)">Ringwood &amp; surrounding suburbs (Eastern region)</button>
+          <button type="button" class="quiz-option" data-value="Geelong &amp; surrounding suburbs (Greater Geelong)">Geelong &amp; surrounding suburbs (Greater Geelong)</button>
+          <button type="button" class="quiz-option" data-value="Other (Somewhere else)">Other (Somewhere else)</button>
         </div>
 
         <!-- Q5 -->
@@ -534,7 +535,7 @@ function getAttribution() {
           <input type="email" id="qf-email" name="email" autocomplete="email" required>
 
           <label for="qf-suburb">Suburb</label>
-          <input type="text" id="qf-suburb" name="suburb" autocomplete="address-level2" required>
+          <input type="text" id="qf-suburb" name="suburb" autocomplete="address-level2" placeholder="e.g. Tarneit" required>
 
           <fieldset>
             <legend>Best time to call</legend>
@@ -608,7 +609,7 @@ function getAttribution() {
             <tr>
               <th scope="row">What the funding buys</th>
               <td>Therapy hours, minus time lost to travel and reports written off-site</td>
-              <td class="us">Hands-on therapy, not reports</td>
+              <td class="us">Hands-on therapy, not just reports</td>
               <td>Nothing - funding sits unused</td>
             </tr>
             <tr>
@@ -646,12 +647,12 @@ function getAttribution() {
   <section class="marquee" aria-label="Quick reassurances">
     <div class="marquee-track">
       <ul>
-        <li>Hands-on therapy, not reports</li>
+        <li>Hands-on therapy, not just reports</li>
         <li>Free consult before any paperwork</li>
         <li>If we are not the right fit, we will say so</li>
       </ul>
       <ul aria-hidden="true">
-        <li>Hands-on therapy, not reports</li>
+        <li>Hands-on therapy, not just reports</li>
         <li>Free consult before any paperwork</li>
         <li>If we are not the right fit, we will say so</li>
       </ul>
@@ -884,8 +885,9 @@ function getAttribution() {
    Five questions, one per screen, ALWAYS run in full. Routing is
    decided only after Q5, using explicit rules (not a points score):
 
-     not_yet         if Q1 === "Not yet" OR Q2 === "No"
-                        OR Q3 === "19 or older" OR Q4 === "Somewhere else"
+     not_yet         if Q1 === "Not yet" OR Q2 === "No" OR Q3 === "19 or older"
+                     (Q4 "Other (Somewhere else)" no longer disqualifies -
+                      those leads are captured and routed to Unsorted)
      funding_unsure  else if Q2 === "Not sure"
      qualified       else
 
@@ -913,16 +915,6 @@ function getAttribution() {
   var submitting = false;     // guards double submits / double Lead fires
   var leadFired = false;
 
-  var REGION_LABELS = {
-    'Melbourne West': 'Melbourne West',
-    'Melbourne North': 'Melbourne North',
-    'Melbourne South-East': 'Melbourne South-East',
-    'Melbourne North-West': 'Melbourne North-West',
-    'Elsewhere in Melbourne': '',
-    'Geelong': 'Geelong',
-    'Somewhere else': ''
-  };
-
   function showStep(i) {
     current = i;
     steps.forEach(function (s, idx) { s.hidden = idx !== i; });
@@ -941,8 +933,8 @@ function getAttribution() {
   }
 
   function decideOutcome() {
-    var q1 = answers.q1, q2 = answers.q2, q3 = answers.q3, q4 = answers.q4;
-    if (q1 === 'Not yet' || q2 === 'No' || q3 === '19 or older' || q4 === 'Somewhere else') {
+    var q1 = answers.q1, q2 = answers.q2, q3 = answers.q3;
+    if (q1 === 'Not yet' || q2 === 'No' || q3 === '19 or older') {
       return 'not_yet';
     }
     if (q2 === 'Not sure') {
@@ -1004,8 +996,9 @@ function getAttribution() {
       formFraming.textContent = "Tell us where to reach you and a team member will call to book in your consult.";
     }
 
-    var suburbInput = document.getElementById('qf-suburb');
-    suburbInput.value = REGION_LABELS[answers.q4] || '';
+    // The suburb field is left for the parent to type - a real suburb (or
+    // postcode) routes the lead to the right sheet tab far more precisely
+    // than the broad Q4 region, which the webhook still uses as a fallback.
 
     contactForm.hidden = false;
     current = steps.indexOf(contactForm);
