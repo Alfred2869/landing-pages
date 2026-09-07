@@ -289,3 +289,29 @@ function resortUnsorted() {
   }
   Logger.log('Moved ' + moved + ' row(s) out of Unsorted.');
 }
+
+/**
+ * One-off tidy-up: delete completely empty rows sitting between leads on
+ * every tab (appendRow can leave gaps after rows are cleared by hand).
+ * Run it from the editor. Only rows with no content in any cell are
+ * removed - anything with even one filled cell is left alone, and no
+ * routing rules are involved.
+ */
+function removeBlankRows() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var tabs = ss.getSheets();
+  var total = 0;
+  for (var t = 0; t < tabs.length; t++) {
+    var sh = tabs[t];
+    var last = sh.getLastRow();
+    if (last < 2) continue;
+    var values = sh.getRange(1, 1, last, sh.getLastColumn()).getValues();
+    for (var r = last - 1; r >= 1; r--) { // 0-based; row 0 is the header
+      if (!values[r].join('')) {
+        sh.deleteRow(r + 1);
+        total++;
+      }
+    }
+  }
+  Logger.log('Removed ' + total + ' blank row(s).');
+}
