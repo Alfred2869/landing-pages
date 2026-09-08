@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NDIS Physical Intervention and Rehabilitation Programs | Alpha Abilities Melbourne</title>
+<meta name="description" content="NDIS physical intervention and rehabilitation programs for adults - exercise physiology delivered in-home or in-clinic across Melbourne and Geelong. Free half-hour consult, no waitlist.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+<!--
+  ============================================================================
+  ADULTS PAGE - live (Design A "Purple lead", chosen 2026-09-08)
+  Purple + green NDIS-aligned palette, purple header/hero, green CTAs.
+  Two-question quiz (NDIS yes/no, in-home vs in-clinic) + contact form,
+  sized up for mobile. Same pixel + webhook contract as the live pages.
+  ============================================================================
+-->
+<script>
+/* ---- CONFIG ---- */
+const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyAlVt5nVl0bUEQTbpWfEFXAW6nIqsDA9RINRNargJW4T3rSTRlhkut6xwA4s1rv-hV/exec'; // ADULTS webhook (apps-script/adults-leads-to-sheet.gs, deployment v1 2026-09-08)
+const META_PIXEL_ID = '588605086192087';
+
+(function(){
+  if (!META_PIXEL_ID) { return; }
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', META_PIXEL_ID);
+  fbq('track', 'PageView');
+})();
+function safeFbq() { if (typeof fbq === 'function') { fbq.apply(null, arguments); } }
+
+var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+(function () {
+  try {
+    var qs = new URLSearchParams(window.location.search);
+    if (UTM_KEYS.some(function (k) { return qs.has(k); })) {
+      UTM_KEYS.forEach(function (k) { sessionStorage.setItem(k, qs.get(k) || ''); });
+    }
+  } catch (e) {}
+})();
+function getAttribution() {
+  var out = {};
+  UTM_KEYS.forEach(function (k) {
+    var v = '';
+    try { v = sessionStorage.getItem(k) || ''; } catch (e) {}
+    out[k] = v;
+  });
+  return out;
+}
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=588605086192087&ev=PageView&noscript=1"
+/></noscript>
+
+<style>
+  /* ==== THEME A - purple lead, green action ==== */
+  :root{
+    --ink:        #241A31;  /* near-black plum */
+    --muted:      #6B6076;
+    --line:       #E4DCEF;
+    --bg:         #FBFAFD;  /* lavender-tinted white */
+    --bg-alt:     #F3EEFA;  /* soft lilac panel */
+    --surface:    #FFFFFF;
+    --purple:     #5E2D8C;  /* NDIS-style purple - header, footer, headings */
+    --purple-deep:#47216B;
+    --green:      #7AC143;  /* NDIS heart green - CTAs, ticks, highlights */
+    --green-ink:  #17300A;  /* dark green-black text on green buttons */
+    --on-dark:    #F7F4FB;
+    --purple-tint:#EFE7F8;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.55;
+    -webkit-text-size-adjust:100%; overflow-x:hidden;
+  }
+  img,svg{ max-width:100%; display:block; }
+  h1,h2,h3{ line-height:1.12; font-weight:700; font-family:"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  h1{ font-size:clamp(1.75rem, 6.5vw, 3.1rem); font-weight:800; text-transform:uppercase; letter-spacing:.01em; }
+  h2{ font-size:clamp(1.45rem, 4.5vw, 2rem); margin-bottom:.5rem; color:var(--purple-deep); }
+  h3{ font-size:1.15rem; }
+  p{ max-width:65ch; }
+  a{ color:var(--purple); }
+  :focus-visible{ outline:3px solid var(--green); outline-offset:2px; }
+
+  .wrap{ max-width:1100px; margin:0 auto; padding:0 1.25rem; }
+  section{ padding:3rem 0; }
+  .section-alt{ background:var(--bg-alt); }
+  .kicker{
+    display:block; font-size:.8rem; font-weight:700; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--green); margin-bottom:.5rem;
+    font-family:"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .section-alt .kicker, .hero .kicker{ color:var(--purple); }
+  .sub{ color:var(--muted); margin-bottom:1.5rem; }
+
+  /* ==== Buttons - green primary action everywhere ==== */
+  .btn{
+    display:inline-block; padding:1.2rem 2.4rem; font-size:1.25rem; font-weight:700;
+    color:var(--green-ink); background:var(--green); border:2px solid var(--green);
+    border-radius:10px; text-decoration:none; cursor:pointer; text-align:center;
+    font-family:"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .btn:hover{ filter:brightness(1.06); }
+  /* Big primary CTA on phones - full-width tap target */
+  @media (max-width:700px){
+    .hero .btn, .final-cta .btn, .quiz-form .btn{ display:block; width:100%; font-size:1.3rem; padding:1.25rem 1rem; }
+  }
+
+  .btn-block{ display:block; width:100%; }
+
+  /* ==== 1. Sticky header - brand purple ==== */
+  .site-header{ position:sticky; top:0; z-index:50; background:var(--purple); }
+  .site-header .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; row-gap:.5rem; gap:.75rem; padding-top:.65rem; padding-bottom:.65rem;
+  }
+  .logo-img{ display:block; height:44px; width:60px; }
+  .header-actions{ display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; justify-content:flex-end; }
+  .header-phone{ font-size:.85rem; font-weight:600; color:var(--on-dark); text-decoration:underline; white-space:nowrap; }
+  .site-header .btn{ padding:.6rem 1rem; font-size:.8rem; white-space:nowrap; }
+  .site-header :focus-visible, .site-footer :focus-visible{ outline-color:var(--on-dark); }
+
+  @media (max-width:400px){
+    .site-header .wrap{ justify-content:flex-start; padding-top:.5rem; padding-bottom:.5rem; row-gap:.3rem; }
+    .header-actions{ width:100%; justify-content:space-between; }
+  }
+
+  /* ==== 2. Hero - purple panel, white type, team photo ==== */
+  .hero{ background:var(--purple); color:var(--on-dark); padding:2.5rem 0 3rem; }
+  .hero h1{ color:#FFFFFF; }
+  .hero h1 .hl{ color:var(--green); }
+  .hero .sub{ color:#DCCFEE; margin-top:.9rem; }
+  .hero ul{ list-style:none; margin:1.25rem 0; padding:0; }
+  .hero li{ margin-bottom:.6rem; padding-left:1.7rem; position:relative; }
+  .hero li::before{
+    content:"\2713"; position:absolute; left:0; top:0; color:var(--green); font-weight:800;
+  }
+  .reassure-line{ font-size:.9rem; color:#DCCFEE; margin-top:.85rem; }
+  .hero .wrap{ display:grid; gap:2rem; grid-template-columns:1fr; align-items:center; }
+  .hero-photo{ display:block; width:100%; height:auto; border-radius:14px; }
+  .hero-badges{ display:flex; align-items:center; gap:1.5rem; margin-top:1.5rem; flex-wrap:wrap; }
+  .ndis-badge{ display:block; width:104px; height:auto; border-radius:8px; }
+  .google-rating{ display:flex; align-items:center; gap:.65rem; }
+  .google-rating svg{ width:32px; height:32px; flex-shrink:0; }
+  .g-score{ font-weight:700; font-size:1.25rem; margin-right:.4rem; color:#FFFFFF; }
+  .g-stars{ color:#FBBC05; letter-spacing:.08em; }
+  .g-caption{ display:block; font-size:.8rem; color:#DCCFEE; }
+
+  /* ==== 3. Qualifier quiz - BIG on mobile ==== */
+  .quiz{
+    background:var(--surface); border:2px solid var(--purple); border-radius:16px;
+    padding:1.75rem 1.5rem; max-width:760px; margin:0 auto;
+    box-shadow:0 10px 30px rgba(94,45,140,.12);
+  }
+  .quiz-progress{ font-size:.95rem; font-weight:600; color:var(--purple); margin-bottom:.4rem; }
+  .quiz-bar{ height:8px; background:var(--bg-alt); border-radius:4px; margin-bottom:1.5rem; overflow:hidden; }
+  .quiz-bar-fill{ height:100%; width:0; background:var(--green); transition:width .25s ease; }
+  .quiz-step[hidden]{ display:none; }
+  .quiz-step legend, .quiz-step h3{ margin-bottom:1.25rem; font-size:clamp(1.3rem, 5vw, 1.6rem); color:var(--purple-deep); }
+  .quiz-option{
+    display:block; width:100%; text-align:center; padding:1.15rem 1.25rem; margin-bottom:.85rem;
+    background:var(--surface); border:2px solid var(--line); border-radius:12px;
+    font:inherit; font-size:1.2rem; font-weight:600; color:var(--ink); cursor:pointer;
+  }
+  .quiz-option:hover{ border-color:var(--green); }
+  .quiz-option[aria-pressed="true"]{ border-color:var(--green); background:#F0F8E8; }
+  .quiz-back{
+    background:none; border:none; font:inherit; color:var(--muted);
+    cursor:pointer; text-decoration:underline; padding:.25rem; margin-top:.5rem;
+  }
+  .quiz-form label{ display:block; font-weight:600; margin-bottom:.4rem; font-size:1.05rem; }
+  .quiz-form input, .quiz-form select{
+    width:100%; padding:1rem 1.1rem; font:inherit; font-size:1.05rem; border:2px solid var(--line);
+    border-radius:10px; margin-bottom:1.1rem; color:var(--ink); background:var(--surface);
+  }
+  .quiz-form fieldset{ border:none; margin-bottom:1.1rem; }
+  .quiz-form fieldset legend{ font-weight:600; margin-bottom:.5rem; padding:0; font-size:1.05rem; }
+  .quiz-form .radio-row{ display:flex; flex-wrap:wrap; gap:.85rem; }
+  .quiz-form .radio-row label{ display:flex; align-items:center; gap:.45rem; font-weight:400; font-size:1rem; }
+  .quiz-form .radio-row input{ width:auto; margin:0; }
+  .reassure{ font-size:.85rem; color:var(--muted); margin-bottom:1rem; }
+  .quiz-outcome[hidden]{ display:none; }
+  .quiz-outcome{ text-align:left; }
+  .quiz-outcome h3{ margin-bottom:.6rem; color:var(--purple-deep); }
+  .quiz-outcome p{ margin-bottom:1rem; }
+
+  /* ==== 4. Comparison table ==== */
+  .table-scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .compare{ border-collapse:collapse; width:100%; min-width:640px; font-size:.95rem; }
+  .compare th,.compare td{ border:1px solid var(--line); padding:.85rem 1rem; text-align:left; vertical-align:top; }
+  .compare thead th{ background:var(--bg-alt); }
+  .compare .us{ background:var(--bg-alt); font-weight:600; border-left:3px solid var(--green); border-right:3px solid var(--green); }
+  .compare thead .us{ border-top:3px solid var(--green); }
+  .compare tbody tr:last-child .us{ border-bottom:3px solid var(--green); }
+  .compare .concede td, .compare .concede th{ font-style:italic; }
+
+  .credentials-strip{
+    margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; align-items:baseline;
+    font-size:.85rem; color:var(--muted);
+  }
+  .credentials-strip strong{ color:var(--ink); }
+
+  /* ==== 6. Value-bar marquee ==== */
+  .marquee{ overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--surface); }
+  .marquee-track{ display:flex; width:max-content; animation:marquee 30s linear infinite; }
+  .marquee:hover .marquee-track, .marquee:focus-within .marquee-track{ animation-play-state:paused; }
+  .marquee-track ul{ display:flex; list-style:none; gap:0; align-items:center; }
+  .marquee-track li{
+    white-space:nowrap; padding:1rem 1.5rem; font-weight:600; font-size:.95rem;
+    font-family:"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color:var(--purple-deep);
+  }
+  .marquee-track li::after{ content:"\2665"; margin-left:3rem; color:var(--green); }
+  @keyframes marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+  /* ==== 7. Modules ==== */
+  .modules{ display:grid; gap:1.5rem; grid-template-columns:1fr; counter-reset:module; }
+  .module{ border:1px solid var(--line); border-top:4px solid var(--green); border-radius:12px; padding:1.5rem; background:var(--surface); }
+  .module::before{
+    counter-increment:module; content:"0" counter(module);
+    display:block; font-size:1.6rem; font-weight:700; color:var(--green); margin-bottom:.5rem;
+    font-family:"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .module p{ color:var(--muted); font-size:.95rem; margin-top:.5rem; }
+  .module .suburbs{ font-size:.9rem; color:var(--ink); margin-top:.75rem; }
+  .modules--logistics{ margin-top:1.5rem; }
+
+  .illus{ display:block; width:100%; height:auto; border-radius:14px; }
+  .services-illus{ margin:2rem auto 0; max-width:560px; }
+
+  /* ==== 8. Timeline ==== */
+  .timeline{ list-style:none; position:relative; padding-left:1.75rem; max-width:640px; }
+  .timeline::before{ content:""; position:absolute; left:.5rem; top:.5rem; bottom:.5rem; width:2px; background:var(--line); }
+  .timeline li{ position:relative; margin-bottom:1.75rem; }
+  .timeline li::before{
+    content:""; position:absolute; left:-1.75rem; top:.35rem; width:1rem; height:1rem;
+    background:var(--bg-alt); border:3px solid var(--green); border-radius:50%;
+  }
+  .timeline .beat-label{ display:block; font-size:.8rem; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:var(--green); }
+  .timeline h3{ margin:.15rem 0 .3rem; color:var(--purple-deep); }
+  .timeline p{ color:var(--muted); font-size:.95rem; }
+  .visit-minutes{ list-style:none; margin-top:.75rem; padding-left:0; position:static; }
+  .visit-minutes li{ font-size:.9rem; color:var(--muted); margin-bottom:.4rem; padding-left:0; }
+  .visit-minutes li::before{ display:none; content:none; }
+  .visit-minutes li strong{ color:var(--ink); }
+  .timeline-illus{ margin:2rem auto 0; max-width:560px; }
+
+  /* ==== 9. Honesty block ==== */
+  .honesty-block{ background:var(--bg-alt); border-left:4px solid var(--green); border-radius:8px; padding:1.5rem; max-width:70ch; }
+
+  /* ==== 10. Proof ==== */
+  .proof-rating{
+    background:var(--surface); border:1px solid var(--line); border-radius:12px;
+    padding:2rem; text-align:center; max-width:480px; margin:0 auto 2rem;
+  }
+  .proof-rating .stars-text{ font-size:clamp(1.5rem,4vw,2.1rem); font-weight:700; display:block; color:var(--purple-deep); font-family:"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .proof-rating .stars-sub{ display:block; margin:.35rem 0 1rem; color:var(--muted); }
+
+  /* ==== 11. FAQ ==== */
+  .faq details{ border-bottom:1px solid var(--line); }
+  .faq details:first-of-type{ border-top:1px solid var(--line); }
+  .faq summary{
+    cursor:pointer; padding:1.1rem .25rem; font-weight:600; list-style:none;
+    display:flex; justify-content:space-between; align-items:center; gap:1rem;
+    font-family:"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .faq summary::-webkit-details-marker{ display:none; }
+  .faq summary::after{ content:"+"; font-size:1.3rem; color:var(--green); flex-shrink:0; }
+  .faq details[open] summary::after{ content:"\2212"; }
+  .faq details p{ padding:0 .25rem 1.25rem; color:var(--muted); }
+
+  /* ==== 12. Final CTA ==== */
+  .final-cta{ text-align:center; background:var(--purple); color:var(--on-dark); }
+  .final-cta h2{ color:#FFFFFF; }
+  .final-cta p{ margin:.75rem auto 1.5rem; color:#DCCFEE; }
+  .final-cta .honesty{ font-size:.85rem; color:#DCCFEE; margin-top:1rem; }
+
+  /* ==== 13. Footer ==== */
+  .site-footer{ background:var(--purple-deep); padding:2rem 0; font-size:.85rem; color:var(--on-dark); }
+  .site-footer .wrap{ display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; justify-content:space-between; align-items:center; }
+  .site-footer .logo-img{ height:32px; width:44px; }
+  .site-footer a{ color:var(--on-dark); text-decoration:underline; }
+  .site-footer .tagline{ width:100%; text-align:center; margin-top:1rem; font-style:italic; opacity:.85; }
+  .footer-links{ display:flex; flex-direction:column; gap:.3rem; }
+
+  @media (min-width:700px){
+    .hero .wrap{ grid-template-columns:3fr 2fr; }
+    .modules{ grid-template-columns:1fr 1fr; }
+  }
+  @media (min-width:900px){
+    .services-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto; }
+    .marquee{ overflow-x:auto; }
+    .marquee-track{ animation:none; }
+    .quiz-bar-fill{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <img class="logo-img" src="../assets/logo-white.png" alt="Alpha Abilities" width="61" height="44">
+    <div class="header-actions">
+      <a class="header-phone" href="tel:1300522139">1300 522 139</a>
+      <a class="btn" href="#quiz">Book your free consult</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO: bold primary line, purple ground, team photo -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="wrap">
+      <!-- Team of therapists (AI placeholder - swap for a real team photo before launch) -->
+      <img class="hero-photo" src="../assets/photo-team-adults.jpg" alt="The Alpha Abilities therapy team in branded uniforms" width="390" height="520" loading="lazy">
+      <div>
+        <h1 id="hero-heading">NDIS Physical Intervention <span class="hl">and Rehabilitation Programs</span></h1>
+        <a class="btn" href="#quiz">Book your free consult</a>
+        <p class="sub">Exercise physiology for adults - in your home or in the clinic, across Melbourne and Geelong. It starts with a free 30-minute consult - no waitlist to join.</p>
+        <ul>
+          <li>In-home or in-clinic sessions - your choice</li>
+          <li>Qualified, registered and experienced therapists</li>
+        </ul>
+        <p class="reassure-line">Half an hour. No charge. No obligation.</p>
+        <div class="hero-badges">
+          <img class="ndis-badge" src="../assets/I-love-NDIS-logo.webp" alt="I Heart NDIS - Registered NDIS Provider" width="104" height="104" loading="lazy">
+          <div class="google-rating" aria-label="Rated 4.9 stars from public Google reviews">
+            <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+            <span class="g-text"><span class="g-score">4.9</span><span class="g-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="g-caption">from public Google reviews</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--
+    QUIZ - two questions, then details. Routing:
+      not_yet   if Q1 = "No"
+      qualified otherwise (Q2 records in-home vs in-clinic preference)
+    Payload keys unchanged for the live webhook; the session preference
+    rides in q5_lookingFor and postcode still drives tab routing.
+  -->
+  <section id="quiz" class="section-alt" aria-labelledby="quiz-heading">
+    <div class="wrap">
+      <span class="kicker">Is this right for you?</span>
+      <h2 id="quiz-heading">Three quick questions, then we will tell you honestly</h2>
+      <p class="sub">Half an hour. No charge. No obligation. If we are not the right fit, we will say so here.</p>
+
+      <div class="quiz" id="quizWidget">
+        <p class="quiz-progress" id="quiz-progress" aria-live="polite">Question 1 of 3</p>
+        <div class="quiz-bar" aria-hidden="true"><div class="quiz-bar-fill" id="quiz-bar-fill"></div></div>
+
+        <!-- Q1 -->
+        <div class="quiz-step" data-step="1">
+          <h3>Are you or someone you know an NDIS participant?</h3>
+          <button type="button" class="quiz-option" data-value="Yes">Yes</button>
+          <button type="button" class="quiz-option" data-value="No">No</button>
+        </div>
+
+        <!-- Q2 -->
+        <div class="quiz-step" data-step="2" hidden>
+          <h3>Would you prefer in-home or in-clinic sessions?</h3>
+          <button type="button" class="quiz-option" data-value="In-home sessions">In-home</button>
+          <button type="button" class="quiz-option" data-value="In-clinic sessions">In-clinic</button>
+        </div>
+
+        <!-- Q3 - labels identical to the kids page; the live webhook maps them to sheet tabs -->
+        <div class="quiz-step" data-step="3" hidden>
+          <h3>Where are you located?</h3>
+          <button type="button" class="quiz-option" data-value="Werribee &amp; surrounding suburbs (Western region)">Werribee &amp; surrounding suburbs (Western region)</button>
+          <button type="button" class="quiz-option" data-value="Craigieburn &amp; surrounding suburbs (Northern region)">Craigieburn &amp; surrounding suburbs (Northern region)</button>
+          <button type="button" class="quiz-option" data-value="Cranbourne &amp; surrounding suburbs (South-Eastern region)">Cranbourne &amp; surrounding suburbs (South-Eastern region)</button>
+          <button type="button" class="quiz-option" data-value="Melton &amp; surrounding suburbs (Greater Western region)">Melton &amp; surrounding suburbs (Greater Western region)</button>
+          <button type="button" class="quiz-option" data-value="Ringwood &amp; surrounding suburbs (Eastern region)">Ringwood &amp; surrounding suburbs (Eastern region)</button>
+          <button type="button" class="quiz-option" data-value="Geelong &amp; surrounding suburbs (Greater Geelong)">Geelong &amp; surrounding suburbs (Greater Geelong)</button>
+          <button type="button" class="quiz-option" data-value="Other (Somewhere else)">Other (Somewhere else)</button>
+        </div>
+
+        <!-- Contact capture -->
+        <form class="quiz-step quiz-form" id="quizContactForm" data-step="4" hidden novalidate>
+          <h3 id="quizFormHeading">Book your free consult</h3>
+          <p class="sub" id="quizFormFraming">Tell us where to reach you and a team member will call to book in your consult.</p>
+
+          <label for="qf-name">Your name</label>
+          <input type="text" id="qf-name" name="name" autocomplete="name" required>
+
+          <label for="qf-mobile">Mobile</label>
+          <input type="tel" id="qf-mobile" name="mobile" autocomplete="tel" inputmode="tel" required>
+
+          <label for="qf-email">Email</label>
+          <input type="email" id="qf-email" name="email" autocomplete="email" required>
+
+          <label for="qf-suburb">Postcode</label>
+          <input type="text" id="qf-suburb" name="suburb" autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="e.g. 3029" required>
+
+          <fieldset>
+            <legend>Best time to call</legend>
+            <div class="radio-row">
+              <label><input type="radio" name="contactTime" value="Morning" required> Morning</label>
+              <label><input type="radio" name="contactTime" value="Afternoon"> Afternoon</label>
+              <label><input type="radio" name="contactTime" value="Evening"> Evening</label>
+            </div>
+          </fieldset>
+
+          <p class="reassure">No spam, no mailing list - we only use this to arrange your consult.</p>
+          <button type="submit" class="btn btn-block">Book your free consult</button>
+        </form>
+
+        <!-- Outcome: QUALIFIED -->
+        <div class="quiz-outcome" data-outcome="qualified" hidden tabindex="-1">
+          <h3>Done - a team member will call you</h3>
+          <p>A team member will call you within one business day to book in your consult.</p>
+        </div>
+
+        <!-- Outcome: NOT YET -->
+        <div class="quiz-outcome" data-outcome="not_yet" hidden tabindex="-1">
+          <h3>We are not the right fit right now</h3>
+          <p>We are an NDIS-funded service in Melbourne and Geelong, so we are not the right fit right now. If NDIS access is not yet in place, a GP or Local Area Coordinator is the right place to start that process. If your situation is a bit different, call us on <a href="tel:1300522139">1300 522 139</a> and we will talk it through honestly.</p>
+        </div>
+
+        <button type="button" class="quiz-back" id="quiz-back" hidden>&#8592; Back</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE BAR -->
+  <section class="marquee" aria-label="Quick reassurances">
+    <div class="marquee-track">
+      <ul>
+        <li>Hands-on therapy, not just reports</li>
+        <li>Free consult before any paperwork</li>
+        <li>If we are not the right fit, we will say so</li>
+      </ul>
+      <ul aria-hidden="true">
+        <li>Hands-on therapy, not just reports</li>
+        <li>Free consult before any paperwork</li>
+        <li>If we are not the right fit, we will say so</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section aria-labelledby="modules-heading">
+    <div class="wrap">
+      <span class="kicker">What's inside</span>
+      <h2 id="modules-heading">What you get</h2>
+      <p class="sub">Physical intervention and rehabilitation programs built on exercise physiology - delivered in-home or in-clinic.</p>
+      <div class="modules services-grid">
+        <article class="module">
+          <h3>Strength, balance &amp; mobility</h3>
+          <p>For adults building strength, balance, mobility and stamina - reducing falls risk, moving with more confidence, and staying independent longer. A program built around your goals and the equipment you actually have.</p>
+        </article>
+        <article class="module">
+          <h3>Rehabilitation &amp; condition management</h3>
+          <p>For adults getting function back after injury or illness, or managing pain, fatigue, weight or a long-term condition - paced honestly, reviewed regularly, and adjusted as you progress.</p>
+        </article>
+      </div>
+
+      <!-- Session photo: one-on-one support, branded uniform (AI placeholder) -->
+      <img class="illus services-illus" src="../assets/photo-session-gym.jpg"
+           alt="An Alpha Abilities exercise physiologist supporting a laughing participant as she presses light dumbbells overhead"
+           width="1400" height="1875" loading="lazy">
+
+      <div class="modules modules--logistics">
+        <article class="module">
+          <h3>Where sessions happen</h3>
+          <p>In your home or community, or in-clinic - across Melbourne and Geelong.</p>
+          <p class="suburbs">Werribee, Point Cook, Hoppers Crossing, Tarneit, Craigieburn, Cranbourne, Clyde, Melton, Sunbury, Ringwood, Geelong and surrounds.</p>
+        </article>
+        <article class="module">
+          <h3>What happens next</h3>
+          <p>After the consult, one of our friendly team gives you a call to talk it through and see how you would like to go ahead - fixed weekly or fortnightly sessions, whichever fits your routine. No pressure either way.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section-alt" aria-labelledby="timeline-heading">
+    <div class="wrap">
+      <span class="kicker">How it actually goes</span>
+      <h2 id="timeline-heading">From free consult to regular sessions</h2>
+      <p class="sub">Five steps, starting with half an hour that costs nothing.</p>
+      <ol class="timeline">
+        <li>
+          <span class="beat-label">Step one</span>
+          <h3>You book the free consult</h3>
+          <p>Three quick questions, then a therapist calls to arrange a time that suits you.</p>
+        </li>
+        <li>
+          <span class="beat-label">Step two</span>
+          <h3>Your free 30-minute consult</h3>
+          <p>At your place or in the clinic, minute by minute:</p>
+          <ul class="visit-minutes">
+            <li>Hello and a chat about your goals by <strong>minute 1</strong></li>
+            <li>Looking at how you move and manage day-to-day by <strong>minute 10</strong></li>
+            <li>An honest read and a written picture of sessions by <strong>minute 25</strong></li>
+            <li>We are done at <strong>minute 30</strong></li>
+          </ul>
+        </li>
+        <li>
+          <span class="beat-label">Step three</span>
+          <h3>You get the service agreement</h3>
+          <p>Your costs, in writing, before you commit to anything.</p>
+        </li>
+        <li>
+          <span class="beat-label">Step four</span>
+          <h3>Sessions begin</h3>
+          <p>In-home or in-clinic - whichever you chose, at times that fit your routine.</p>
+        </li>
+        <li>
+          <span class="beat-label">Step five</span>
+          <h3>Regular reviews with you</h3>
+          <p>You hear how things are going and what happens next, in plain language.</p>
+        </li>
+      </ol>
+      <!-- Session photo: therapist and participant celebrating (AI placeholder) -->
+      <img class="illus timeline-illus" src="../assets/photo-session-highfive.jpg"
+           alt="An Alpha Abilities exercise physiologist sharing a high five with an adult NDIS participant during a gym session"
+           width="1200" height="1607" loading="lazy">
+    </div>
+  </section>
+
+  <!-- HONESTY -->
+  <section aria-labelledby="after-heading">
+    <div class="wrap">
+      <span class="kicker">If it is not the right fit</span>
+      <h2 id="after-heading">We will tell you honestly</h2>
+      <div class="honesty-block">
+        <p>If we are not the right fit, we will tell you at the consult and point you somewhere better. No hard sell, no pressure to sign anything on the day - the free consult exists so both sides can be honest before any paperwork happens.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section aria-labelledby="proof-heading">
+    <div class="wrap">
+      <span class="kicker">Results</span>
+      <h2 id="proof-heading">What other clients say</h2>
+      <p class="sub">We do not quote reviews here - read them yourself on Google.</p>
+      <div class="proof-rating">
+        <span class="stars-text">4.9 stars from public Google reviews</span>
+        <span class="stars-sub">Read them yourself, unedited, on our Google profile.</span>
+      </div>
+      <p class="credentials-strip">
+        <span><strong>Registrations:</strong> ESSA-accredited exercise physiologists</span>
+        <span>Registered NDIS provider</span>
+        <span>Minimum bachelor-level qualification</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-alt faq" aria-labelledby="faq-heading">
+    <div class="wrap">
+      <span class="kicker">Straight answers</span>
+      <h2 id="faq-heading">Questions people actually ask</h2>
+      <p class="sub">Including the honest one about who this is not for.</p>
+
+      <details>
+        <summary>What does it cost?</summary>
+        <p>Your costs are set out in writing in your service agreement after the free consult, before you commit to anything. No surprise report invoices.</p>
+      </details>
+      <details>
+        <summary>In-home or in-clinic - which is better?</summary>
+        <p>Whichever you will actually stick with. Home sessions build skills where you use them every day; the clinic suits people who focus better away from home. We offer both, and the therapist will tell you honestly which fits you at the consult.</p>
+      </details>
+      <details>
+        <summary>What happens at the free consult?</summary>
+        <p>Half an hour - a chat about your goals, a look at how you move and manage day-to-day, then an honest read and a written picture of what sessions would look like. No charge, no obligation.</p>
+      </details>
+      <details>
+        <summary>Which NDIS funding does this use?</summary>
+        <p>Self-managed, plan-managed and NDIA (agency) managed plans are all accepted. Have your plan handy at the free consult and the therapist will tell you honestly what it covers.</p>
+      </details>
+      <details>
+        <summary>Do I need my own gym membership or equipment?</summary>
+        <p>No. The therapist works with whatever you have - a home setup, a park, our clinic, or your local gym if you already train there. If equipment would genuinely help, that goes in the written picture before you spend anything.</p>
+      </details>
+      <details>
+        <summary>Which areas do you cover?</summary>
+        <p>Melbourne and Geelong, including Werribee, Point Cook, Hoppers Crossing, Tarneit, Craigieburn, Cranbourne, Clyde, Melton, Sunbury, Ringwood and surrounds. If you are outside these areas, ask us at the consult - we may still be able to help.</p>
+      </details>
+      <details>
+        <summary>How soon can sessions start?</summary>
+        <p>Typically within five business days of the free consult. Once you accept the service agreement, your first regular session is booked at a time that suits you.</p>
+      </details>
+      <details>
+        <summary>Who is this NOT for?</summary>
+        <p>Adults without NDIS therapy funding and people outside Melbourne and Geelong. This page is our adult service - for children's therapy, see our <a href="https://go.alphaabilities.com.au/">children's page</a>. If any of these describe you, we will tell you honestly rather than waste your time.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- DIFFERENTIATION -->
+  <section aria-labelledby="compare-heading">
+    <div class="wrap">
+      <span class="kicker">Your options</span>
+      <h2 id="compare-heading">The choice most people are actually weighing up</h2>
+      <p class="sub">A clinic program elsewhere and simply putting it off are both real options. Here is where each one stands.</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-labelledby="compare-heading">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th scope="col"><span class="kicker">Compare on</span></th>
+              <th scope="col">Somewhere else</th>
+              <th scope="col" class="us">Alpha Abilities - home or clinic</th>
+              <th scope="col">Putting it off</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Where therapy happens</th>
+              <td>Wherever a timetable slot is free</td>
+              <td class="us">Your home, your community, or our clinic - your choice</td>
+              <td>Nowhere - nothing is happening</td>
+            </tr>
+            <tr>
+              <th scope="row">When it can start</th>
+              <td>After you join a waitlist, often months long</td>
+              <td class="us">A free consult first, then sessions begin without joining a waitlist</td>
+              <td>Never, until you take the first step</td>
+            </tr>
+            <tr>
+              <th scope="row">What the funding buys</th>
+              <td>Therapy hours, minus travel time and off-site reports</td>
+              <td class="us">Hands-on therapy, not just reports</td>
+              <td>Nothing - funding sits unused</td>
+            </tr>
+            <tr>
+              <th scope="row">Pricing clarity</th>
+              <td>Varies by provider, often unclear until you ask</td>
+              <td class="us">Your costs in writing, before you commit</td>
+              <td>Not applicable</td>
+            </tr>
+            <tr>
+              <th scope="row">If it is not the right fit</th>
+              <td>Often no honest conversation, just more waiting</td>
+              <td class="us">We will tell you at the consult and point you somewhere better</td>
+              <td>The goals keep drifting while you wait</td>
+            </tr>
+            <tr class="concede">
+              <th scope="row">Worth knowing</th>
+              <td colspan="3">Some people train better away from home and some at home - that is exactly why we offer both, and we will tell you honestly which fits you at the consult.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta" aria-labelledby="final-heading">
+    <div class="wrap">
+      <h2 id="final-heading">NDIS rehabilitation programs, in-home or in-clinic</h2>
+      <p>A free half-hour consult, then an honest, written picture of what sessions would look like - no waitlist to join.</p>
+      <a class="btn" href="#quiz">Book your free consult</a>
+      <p class="honesty">Half an hour. No charge. No obligation. If we are not the right fit, we will tell you at the consult.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <img class="logo-img" src="../assets/logo-white.png" alt="Alpha Abilities" width="44" height="32">
+    <span>&copy; 2026 Alpha Abilities. ABN 80 633 804 065. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="tel:1300522139">1300 522 139</a>
+      <a href="mailto:info@alphaabilities.com.au">info@alphaabilities.com.au</a>
+    </div>
+    <span class="tagline">Where Every Person's Potential Becomes Reality</span>
+  </div>
+</footer>
+
+<script>
+/* Three-question qualifier quiz.
+     not_yet   if Q1 === "No"
+     qualified otherwise
+   Q2 (in-home vs in-clinic) drives which tab of the adults LeadSheet the
+   lead lands in (Clinic / In-home) via apps-script/adults-leads-to-sheet.gs. */
+(function () {
+  var quiz = document.getElementById('quizWidget');
+  if (!quiz) return;
+
+  var steps    = Array.prototype.slice.call(quiz.querySelectorAll('.quiz-step'));
+  var outcomes = quiz.querySelectorAll('.quiz-outcome');
+  var backBtn  = document.getElementById('quiz-back');
+  var progress = document.getElementById('quiz-progress');
+  var barFill  = document.getElementById('quiz-bar-fill');
+  var contactForm = document.getElementById('quizContactForm');
+
+  var QUESTIONS = 3;
+  var current = 0;
+  var answers = {};
+  var quizStarted = false;
+  var quizCompleteFired = {};
+  var submitting = false;
+  var leadFired = false;
+
+  function showStep(i) {
+    current = i;
+    steps.forEach(function (s, idx) { s.hidden = idx !== i; });
+    if (i < QUESTIONS) {
+      progress.textContent = 'Question ' + (i + 1) + ' of ' + QUESTIONS;
+    } else {
+      progress.textContent = 'Last step';
+    }
+    barFill.style.width = Math.round((i / (QUESTIONS + 1)) * 100) + '%';
+    backBtn.hidden = i === 0;
+    steps[i].querySelectorAll('.quiz-option').forEach(function (btn) {
+      var qKey = 'q' + (steps[i].getAttribute('data-step'));
+      var prev = answers[qKey] === btn.getAttribute('data-value');
+      btn.setAttribute('aria-pressed', prev ? 'true' : 'false');
+    });
+  }
+
+  function fireQuizComplete(outcome) {
+    if (quizCompleteFired[outcome]) return;
+    quizCompleteFired[outcome] = true;
+    safeFbq('trackCustom', 'QuizComplete', { outcome: outcome, page: 'adults' });
+  }
+
+  function showOutcome(outcome) {
+    steps.forEach(function (s) { s.hidden = true; });
+    backBtn.hidden = true;
+    progress.textContent = 'Your result';
+    barFill.style.width = '100%';
+    outcomes.forEach(function (o) {
+      var match = o.getAttribute('data-outcome') === outcome;
+      o.hidden = !match;
+      if (match) o.focus();
+    });
+    fireQuizComplete(outcome);
+  }
+
+  function showForm() {
+    fireQuizComplete('qualified');
+    steps.forEach(function (s) { s.hidden = true; });
+    backBtn.hidden = false;
+    progress.textContent = 'Last step';
+    barFill.style.width = Math.round((QUESTIONS / (QUESTIONS + 1)) * 100) + '%';
+    contactForm.hidden = false;
+    current = steps.indexOf(contactForm);
+    contactForm.querySelector('input, select').focus();
+  }
+
+  steps.forEach(function (step, i) {
+    if (step === contactForm) return;
+    step.querySelectorAll('.quiz-option').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (!quizStarted) {
+          quizStarted = true;
+          safeFbq('trackCustom', 'QuizStart', { page: 'adults' });
+        }
+        var qKey = 'q' + step.getAttribute('data-step');
+        answers[qKey] = btn.getAttribute('data-value');
+
+        if (qKey === 'q1' && answers.q1 === 'No') {
+          fireQuizComplete('not_yet');
+          showOutcome('not_yet');
+          return;
+        }
+        if (i + 1 < QUESTIONS) {
+          showStep(i + 1);
+        } else {
+          showForm();
+        }
+      });
+    });
+  });
+
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (submitting) return;
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      return;
+    }
+    submitting = true;
+
+    var payload = {
+      name: document.getElementById('qf-name').value,
+      mobile: document.getElementById('qf-mobile').value,
+      email: document.getElementById('qf-email').value,
+      postcode: document.getElementById('qf-suburb').value,
+      preferredContactTime: (contactForm.querySelector('input[name="contactTime"]:checked') || {}).value || '',
+      outcome: 'qualified',
+      page: 'adults-rehab',
+      q1_ndisParticipant: answers.q1 || '',
+      q2_sessionPreference: answers.q2 || '',
+      q3_region: answers.q3 || '',
+      utm: getAttribution()
+    };
+
+    function onSubmitSuccess() {
+      contactForm.querySelector('button[type="submit"]').disabled = true;
+      showOutcome('qualified');
+      if (!leadFired) {
+        leadFired = true;
+        safeFbq('track', 'Lead', { content_name: 'free-consult-quiz-adults', outcome: 'qualified' });
+      }
+    }
+
+    if (!FORM_ENDPOINT) {
+      console.warn('FORM_ENDPOINT not set - submission not sent, Lead not fired');
+      submitting = false;
+      showOutcome('qualified');
+      return;
+    }
+
+    fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error('Form endpoint responded with ' + res.status);
+        return res.json();
+      })
+      .then(function (body) {
+        if (!body || body.ok !== true) throw new Error('Form endpoint reported failure: ' + JSON.stringify(body));
+        onSubmitSuccess();
+      })
+      .catch(function (err) {
+        submitting = false;
+        console.error('Form submission failed:', err);
+        alert('Something went wrong sending your details. Please call us on 1300 522 139 and we will book you in directly.');
+      });
+  });
+
+  backBtn.addEventListener('click', function () {
+    if (contactForm.hidden === false && current === steps.indexOf(contactForm)) {
+      showStep(QUESTIONS - 1);
+      return;
+    }
+    if (current > 0) showStep(current - 1);
+  });
+
+  showStep(0);
+})();
+</script>
+
+</body>
+</html>
