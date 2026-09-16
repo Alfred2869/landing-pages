@@ -84,6 +84,52 @@ function ensureHeaders(sheet) {
   }
 }
 
+// Everyone who gets an email the moment a new lead lands, whichever tab
+// it routes to. Sent via MailApp from the account the web app executes as
+// (quota: 100 recipients/day on a Gmail account, shared with the kids
+// webhook, which executes as the same account).
+var NOTIFY_EMAILS = [
+  'info@alphaabilities.com.au',
+  'andrew@alphaabilities.com.au',
+  'tina@alphaabilities.com.au'
+];
+
+function notifyNewLead_(ss, sheet, data, utm) {
+  MailApp.sendEmail({
+    to: NOTIFY_EMAILS.join(','),
+    subject: 'New lead: ' + (data.name || '(no name)') + ' - ' + sheet.getName() + ' (Alpha Abilities EP)',
+    name: 'Alpha Abilities LeadSheet',
+    body: [
+      'A new lead just landed in the "' + sheet.getName() + '" tab of the Exercise Physiology -Hedgehog LeadSheet.',
+      '',
+      'Name: ' + (data.name || ''),
+      'Mobile: ' + (data.mobile || ''),
+      'Email: ' + (data.email || ''),
+      'Postcode: ' + (data.postcode || ''),
+      'Preferred contact time: ' + (data.preferredContactTime || ''),
+      'Session preference: ' + (data.q2_sessionPreference || ''),
+      'Region: ' + (data.q3_region || ''),
+      'Ad set: ' + (utm.utm_content || ''),
+      'Campaign: ' + (utm.utm_campaign || ''),
+      '',
+      'Open the tab: ' + ss.getUrl() + '#gid=' + sheet.getSheetId()
+    ].join('\n')
+  });
+}
+
+/**
+ * Run ONCE from the editor after pasting this file: triggers the one-time
+ * "send email as you" authorisation and emails a sample notification to
+ * yourself only (not the team), so you can check the format.
+ */
+function sendTestNotification() {
+  MailApp.sendEmail({
+    to: Session.getEffectiveUser().getEmail(),
+    subject: 'EP LeadSheet lead notifications are set up',
+    body: 'Test of the new-lead email. Real leads will notify: ' + NOTIFY_EMAILS.join(', ')
+  });
+}
+
 function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
@@ -113,6 +159,10 @@ function doPost(e) {
       utm.utm_medium || '',
       data.page || ''
     ]);
+
+    // Email the team. A mail failure (quota, outage) must never stop the
+    // lead from being captured, so it cannot escape this try/catch.
+    try { notifyNewLead_(ss, sheet, data, utm); } catch (mailErr) {}
 
     return ContentService
       .createTextOutput(JSON.stringify({ ok: true }))
