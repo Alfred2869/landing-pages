@@ -325,14 +325,6 @@ function getAttribution() {
   /* ==== 9. After / honesty block ==== */
   .honesty-block{ background:var(--bg-alt); border-left:3px solid var(--accent); border-radius:8px; padding:1.5rem; max-width:70ch; }
 
-  /* ==== 10. Proof ==== */
-  .proof-rating{
-    background:var(--surface); border:1px solid var(--line); border-radius:10px;
-    padding:2rem; text-align:center; max-width:480px; margin:0 auto 2rem;
-  }
-  .proof-rating .stars-text{ font-size:clamp(1.6rem,4vw,2.2rem); font-weight:700; display:block; font-family:"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-  .proof-rating .stars-sub{ display:block; margin:.35rem 0 1rem; color:var(--muted); }
-
   /* ==== 11. FAQ ==== */
   .faq details{ border-bottom:1px solid var(--line); }
   .faq details:first-of-type{ border-top:1px solid var(--line); }
@@ -359,15 +351,10 @@ function getAttribution() {
   .site-footer .tagline{ width:100%; text-align:center; margin-top:1rem; font-style:italic; color:var(--on-accent); opacity:.85; }
   .footer-links{ display:flex; flex-direction:column; gap:.3rem; }
 
-  /* Trust row in the hero, under the reassurance line: registered-provider
-     badge beside the Google-reviews note. */
+  /* Trust row in the hero, under the reassurance line: the
+     registered-provider badge. */
   .hero-badges{ display:flex; align-items:center; gap:1.75rem; margin-top:1.5rem; flex-wrap:wrap; }
   .ndis-badge{ display:block; width:110px; height:auto; }
-  .google-rating{ display:flex; align-items:center; gap:.65rem; }
-  .google-rating svg{ width:34px; height:34px; flex-shrink:0; }
-  .g-score{ font-weight:700; font-size:1.1rem; margin-right:.4rem; }
-  .g-stars{ color:#FBBC05; letter-spacing:.08em; }
-  .g-caption{ display:block; font-size:.8rem; color:var(--muted); }
 
   /* ==== Brand photos - real-session photography in the two visit settings ==== */
   .illus{ display:block; width:100%; height:auto; border-radius:12px; }
@@ -436,10 +423,6 @@ function getAttribution() {
         <p class="reassure-line">Half an hour. No charge. No obligation.</p>
         <div class="hero-badges">
           <img class="ndis-badge" src="../assets/I-love-NDIS-logo.webp" alt="I Heart NDIS - Registered NDIS Provider" width="110" height="110" loading="lazy">
-          <div class="google-rating" aria-label="Reviewed publicly on Google">
-            <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-            <span class="g-text"><span class="g-score">Reviewed on Google</span><span class="g-caption">read our reviews yourself, unedited</span></span>
-          </div>
         </div>
       </div>
       <!--
@@ -779,22 +762,17 @@ function getAttribution() {
   </section>
 
   <!--
-    SECTION 10: PROOF - points to public Google reviews only. No quoted
-    testimonials, no star-rating widgets or review schema markup, per AHPRA
-    advertising rules for regulated health services, and no numeric score
-    claimed until the Sydney profile's own rating is confirmed. Credentials
-    strip repeats here.
+    SECTION 10: CREDENTIALS - registrations and qualifications only. The
+    Melbourne page's review/rating content is deliberately absent: Alpha
+    Abilities Care Sydney is a new service with no reviews yet, and claiming
+    any would be false (and a problem under AHPRA advertising rules). Add a
+    proof section back only once real public reviews exist.
   -->
-  <section aria-labelledby="proof-heading">
+  <section aria-labelledby="credentials-heading">
     <div class="wrap">
-      <span class="kicker">Results</span>
-      <h2 id="proof-heading">What other families say</h2>
-      <p class="sub">We do not quote reviews here - read them yourself on Google.</p>
-
-      <div class="proof-rating">
-        <span class="stars-text">Reviewed publicly on Google</span>
-        <span class="stars-sub">Read what Sydney families say yourself, unedited, on our Google profile.</span>
-      </div>
+      <span class="kicker">Who you are dealing with</span>
+      <h2 id="credentials-heading">Qualified and registered</h2>
+      <p class="sub">Every therapist holds the registrations their work requires.</p>
 
       <p class="credentials-strip">
         <span><strong>Registrations:</strong> SPA</span>
