@@ -153,13 +153,13 @@ function ensureHeaders(sheet) {
 }
 
 // Everyone who gets an email the moment a new lead lands, whichever tab
-// it routes to. Sent via MailApp from the account the web app executes as
-// (quota: 100 recipients/day on a Gmail account, SHARED with the other
-// webhooks on the same account - raise with sales if volume gets near it).
+// it routes to. Sydney notifications go ONLY to the Care inbox - the
+// Melbourne team (info@/andrew@/tina@alphaabilities.com.au) was removed
+// on 2026-09-18 at Alfred's request. Sent via MailApp from the account
+// the web app executes as (quota: 100 recipients/day on a Gmail account,
+// SHARED with the other webhooks on the same account).
 var NOTIFY_EMAILS = [
-  'info@alphaabilities.com.au',
-  'andrew@alphaabilities.com.au',
-  'tina@alphaabilities.com.au'
+  'info@alphaabilitiescare.com.au'
 ];
 
 function notifyNewLead_(ss, sheet, data, utm) {
